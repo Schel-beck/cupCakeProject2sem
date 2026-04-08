@@ -19,8 +19,8 @@ public class UserMapper {
     public Integer login(String email, String password) throws DatabaseException {
         String sql = """
                 SELECT u.user_id
-                FROM users u               
-                WHERE u.email = ? AND a.password = ?
+                FROM users u
+                WHERE u.email = ? AND u.password = ?
                 """;
 
         try (Connection connection = connectionPool.getConnection()) {

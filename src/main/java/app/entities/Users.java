@@ -16,7 +16,7 @@ public class Users {
     }
 
 
-    public String gettname() {
+    public String getName() {
         return name;
     }
 
