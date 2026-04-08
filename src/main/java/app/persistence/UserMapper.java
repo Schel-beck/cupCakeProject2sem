@@ -1,0 +1,64 @@
+package app.persistence;
+
+import app.entities.Users;
+import app.exception.DatabaseException;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
+public class UserMapper {
+
+    private ConnectionPool connectionPool;
+    public UserMapper(ConnectionPool connectionPool) {
+        this.connectionPool = connectionPool;
+    }
+
+    public Integer login(String email, String password) throws DatabaseException {
+        String sql = """
+                SELECT u.user_id
+                FROM users u               
+                WHERE u.email = ? AND a.password = ?
+                """;
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+                preparedStatement.setString(1, email);
+                preparedStatement.setString(2, password);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(resultSet.next()){
+                    return resultSet.getInt("user_id");
+                }
+                else{
+                    return null;
+                }
+
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("login fejlede", e.getMessage());
+        }
+    }
+
+    public boolean createUser(String name, String email, String password) throws DatabaseException {
+        String sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setString(1, name);
+            ps.setString(2, email);
+            ps.setString(3, password);
+
+            ps.executeUpdate();
+            return true;
+
+        } catch (SQLException e) {
+            throw new DatabaseException("Kunne ikke oprette bruger", e.getMessage());
+        }
+    }
+}
+
