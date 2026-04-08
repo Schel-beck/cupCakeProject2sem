@@ -1,0 +1,74 @@
+@startuml
+class user {
+    - int id
+    - String firstname
+    - String lastname
+    - String email
+    - String password
+}
+
+class Orderlines {
+    - int orderlineId
+    - int orderId
+    - cupcakeTop top
+    - cupcakeBottom bottom
+    - int quantity
+}
+
+class cupcakeTop{
+    - int id
+    - String name
+    - int price
+}
+
+class cupcakeBottom {
+    - int id
+    - String name
+    - int price
+}
+
+class Orders {
+    - int orderId
+    - int userId
+    - int date
+}
+
+class userMapper{
+    + static void login(String email, String password)
+    + static void signup(String email, String password, String firstname, String lastname)
+}
+
+class orderMapper {
+    + List<Orderlines> getAllOrderlines(User)
+    + List<Orders> getAllOrders(User)
+    + List<Orders> getAllOrders()
+}
+
+class userController {
+    + static void login(Context, Connectionpool)
+    + static void signup(Context, Connectionpool)
+}
+
+class orderController {
+    + static void getAllOrderlines(Context, Connectionpool)
+    + static void getAllOrders()
+}
+
+class userChecker {
+    + static void validateEmail()
+    + static void validatePassword()
+}
+
+Orderlines <-- cupcakeTop
+Orderlines <-- cupcakeBottom
+Orders <-- Orderlines
+user <-- Orders
+userMapper --* user
+userMapper *-- userController
+Orders <-- orderMapper
+Orderlines <-- orderMapper
+orderController --> orderMapper
+userMapper <-- userChecker
+
+
+@enduml

@@ -1,0 +1,48 @@
+@startuml
+object loginmenu
+object signup
+object login
+object user
+object adminstrator
+object email
+object password
+object balance
+
+object designCupcake
+object cupcakeTop
+object cupcakeBottom
+object quantity
+object orderline
+object basket
+object account
+object orders
+object customers
+object price
+
+
+loginmenu --> login
+loginmenu --> signup
+loginmenu <-- email
+loginmenu <-- password
+
+user <-- loginmenu
+adminstrator <-- loginmenu
+designCupcake <-- user
+designCupcake <-- cupcakeBottom
+designCupcake <-- cupcakeTop
+designCupcake <-- quantity
+designCupcake --> account
+account <-- orders
+designCupcake <-- basket
+designCupcake <-- balance
+user <-- balance
+orderline <-- basket
+price <-- basket
+orderline <-- orders
+
+adminstrator <-- customers
+adminstrator <-- orders
+adminstrator <-- balance
+orders <-- customers
+
+@enduml
