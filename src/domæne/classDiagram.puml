@@ -47,16 +47,13 @@ class orderMapper {
 class userController {
     + static void login(Context, Connectionpool)
     + static void signup(Context, Connectionpool)
+    + static void validateEmail()
+    + static void validatePassword()
 }
 
 class orderController {
     + static void getAllOrderlines(Context, Connectionpool)
     + static void getAllOrders()
-}
-
-class userChecker {
-    + static void validateEmail()
-    + static void validatePassword()
 }
 
 Orderlines <-- cupcakeTop
@@ -68,7 +65,7 @@ userMapper *-- userController
 Orders <-- orderMapper
 Orderlines <-- orderMapper
 orderController --> orderMapper
-userMapper <-- userChecker
+
 
 
 @enduml
