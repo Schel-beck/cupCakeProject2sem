@@ -4,9 +4,14 @@ import app.entities.Users;
 import app.exception.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.UserMapper;
+import io.javalin.Javalin;
 import io.javalin.http.Context;
 
 public class UserController {
+
+    public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
+
+    }
 
     public static void registrerBruger(Context ctx, ConnectionPool connectionPool) {
         String name = ctx.formParam("name");
@@ -42,6 +47,12 @@ public class UserController {
         }
     }
 
+    public static void logout(Context ctx) {
+        ctx.req().getSession().invalidate();
+        ctx.redirect("/");
+    }
+
+
     public static String validateUser(String name, String password, String email) {
         if (name.isEmpty()) {
             return "navn skal udfyldes";
@@ -49,7 +60,7 @@ public class UserController {
         else if (email.isEmpty()){
             return "email skal udfyldes";
         }
-        else if (!email.matches("@")){
+        else if (!email.contains("@")){
             return "email mangler @";
         }
         else if (password.isEmpty()) {
