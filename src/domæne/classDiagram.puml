@@ -47,8 +47,7 @@ class orderMapper {
 class userController {
     + static void login(Context, Connectionpool)
     + static void signup(Context, Connectionpool)
-    + static void validateEmail()
-    + static void validatePassword()
+    + static void validateUser()
 }
 
 class orderController {
