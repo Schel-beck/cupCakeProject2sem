@@ -16,7 +16,7 @@ public class UserMapper {
         this.connectionPool = connectionPool;
     }
 
-    public Integer login(String email, String password) throws DatabaseException {
+    public static Users login(String email, String password, ConnectionPool connectionPool) throws DatabaseException {
         String sql = """
                 SELECT u.user_id
                 FROM users u
@@ -31,7 +31,8 @@ public class UserMapper {
 
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if(resultSet.next()){
-                    return resultSet.getInt("user_id");
+                    int id = resultSet.getInt("user_id");
+                    return new Users(null, email, password, id);
                 }
                 else{
                     return null;
@@ -43,7 +44,7 @@ public class UserMapper {
         }
     }
 
-    public boolean createUser(String name, String email, String password) throws DatabaseException {
+    public static void createUser(String name, String email, String password, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
 
         try (Connection connection = connectionPool.getConnection();
@@ -54,7 +55,6 @@ public class UserMapper {
             ps.setString(3, password);
 
             ps.executeUpdate();
-            return true;
 
         } catch (SQLException e) {
             throw new DatabaseException("Kunne ikke oprette bruger", e.getMessage());
