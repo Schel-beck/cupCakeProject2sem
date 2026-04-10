@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class OrderMapper {
-    private Database db;
+    private static Database db;
     public OrderMapper(Database db) {
         this.db = db;
     }
@@ -63,18 +63,18 @@ public class OrderMapper {
         return allOrderLines;
 }
 
-public static List<Orders> getAllOrders(ConnectionPool connectionPool){
+public static List<Orders> getAllOrders(){
         List <Orders> allOrders = new ArrayList<>();
         String sql = "SELECT * FROM orders ORDER BY order_id ASC";
     try(
-            Connection connection = connectionPool.getConnection()) {
+            Connection connection = db.connect()) {
         try(PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int orderId = rs.getInt("order_id");
                 int userId = rs.getInt("user_id");
-                int orderDate = rs.getInt("order_date");
+                String orderDate = rs.getString("order_date");
                 allOrders.add(new Orders(orderId, userId, orderDate));
             }
         }

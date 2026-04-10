@@ -11,7 +11,7 @@ public class Controller {
 
     public static void getAllOrders(Context ctx, ConnectionPool connectionPool){
 
-        List<Orders> ordersList =  OrderMapper.getAllOrders(connectionPool);
+        List<Orders> ordersList =  OrderMapper.getAllOrders();
 
         ctx.attribute("Orders", ordersList);
 

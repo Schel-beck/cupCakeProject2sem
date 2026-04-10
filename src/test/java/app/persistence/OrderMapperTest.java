@@ -1,5 +1,6 @@
 package app.persistence;
 
+import app.entities.Orders;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -95,52 +97,41 @@ class OrderMapperTest {
 
                 // Insert rows
                 stmt.execute("INSERT INTO test.users (user_id, firstname, lastname, email, password, is_admin) VALUES " +
-                        "(1,'Anna', 'Hansen', 'anna.hansen@example.com', '1234', FALSE), " +
-                        "(2,'Mikkel', 'Sørensen', 'mikkel.soerensen@example.com', 'abcd', FALSE), " +
-                        "(3,'Sara', 'Jensen', 'sara.jensen@example.com', 'pass', FALSE), " +
-                        "(4,'Jonas', 'Nielsen', 'jonas.nielsen@example.com', 'qwerty', TRUE), " +
-                        "(5,'Emma', 'Larsen', 'emma.larsen@example.com', 'cupcake', FALSE)");
+                        "(1, 'Anna', 'Hansen', 'anna.hansen@example.com', '1234', FALSE), " +
+                        "(2, 'Mikkel', 'Sørensen', 'mikkel.soerensen@example.com', 'abcd', FALSE), " +
+                        "(3, 'Sara', 'Jensen', 'sara.jensen@example.com', 'pass', FALSE), " +
+                        "(4, 'Jonas', 'Nielsen', 'jonas.nielsen@example.com', 'qwerty', TRUE)");
 
 
-                stmt.execute("INSERT INTO test.bottoms (name, price) VALUES " +
-                        "('Chocolate', 5), " +
-                        "('Vanilla', 4), " +
-                        "('Almond', 6), " +
-                        "('Red Velvet', 6), " +
-                        "('Banana', 5), " +
-                        "('Caramel', 7)");
 
-                stmt.execute("INSERT INTO test.tops (name, price) VALUES " +
-                        "('Chocolate Frosting', 5), " +
-                        "('Vanilla Cream', 4), " +
-                        "('Strawberry Swirl', 6), " +
-                        "('Blueberry Dream', 6), " +
-                        "('Caramel Drizzle', 7), " +
-                        "('Lemon Icing', 5)");
+                stmt.execute("INSERT INTO test.bottoms (bottom_id, name, price) VALUES " +
+                        "(1, 'Chocolate', 5), " +
+                        "(2, 'Vanilla', 4), " +
+                        "(3, 'Almond', 6), " +
+                        "(4, 'Red Velvet', 6)");
 
-                stmt.execute("INSERT INTO test.orders (user_id, order_date) VALUES " +
-                        "(1, '2024-01-05'), " +
-                        "(2, '2024-01-06'), " +
-                        "(1, '2024-01-10'), " +
-                        "(3, '2024-01-12'), " +
-                        "(4, '2024-01-15'), " +
-                        "(2, '2024-01-18'), " +
-                        "(5, '2024-01-20'), " +
-                        "(3, '2024-01-22'), " +
-                        "(1, '2024-01-25'), " +
-                        "(4, '2024-01-28')");
 
-                stmt.execute("INSERT INTO test.orderlines (order_id, top_id, bottom_id, quantity, price) VALUES " +
-                        "(1, 2, 1, 2, 20), " +
-                        "(1, 3, 4, 1, 12), " +
-                        "(2, 1, 2, 3, 27), " +
-                        "(3, 4, 3, 1, 15), " +
-                        "(4, 2, 6, 2, 24), " +
-                        "(5, 5, 1, 1, 14), " +
-                        "(6, 3, 5, 4, 48), " +
-                        "(7, 1, 2, 2, 18), " +
-                        "(8, 4, 4, 1, 16), " +
-                        "(9, 2, 3, 3, 33)");
+                stmt.execute("INSERT INTO test.tops (top_id, name, price) VALUES " +
+                        "(1, 'Chocolate Frosting', 5), " +
+                        "(2, 'Vanilla Cream', 4), " +
+                        "(3, 'Strawberry Swirl', 6), " +
+                        "(4, 'Blueberry Dream', 6)");
+
+
+                stmt.execute("INSERT INTO test.orders (order_id, user_id, order_date) VALUES " +
+                        "(1, 1, '2024-01-05'), " +
+                        "(2, 2, '2024-01-06'), " +
+                        "(3, 3, '2024-01-10'), " +
+                        "(4, 4, '2024-01-12')");
+
+
+
+                stmt.execute("INSERT INTO test.orderlines (orderline_id, order_id, top_id, bottom_id, quantity, price) VALUES " +
+                        "(1, 1, 1, 2, 2, 18), " +
+                        "(2, 1, 3, 1, 1, 11), " +
+                        "(3, 2, 2, 3, 3, 30), " +
+                        "(4, 3, 4, 4, 1, 16), " +
+                        "(5, 4, 1, 1, 2, 20)");
 
 
 
@@ -160,6 +151,17 @@ class OrderMapperTest {
     void getAllOrderlines() {
 
     }
+
+    @Test
+    void getAllOrders(){
+        List<Orders> allOrders = OrderMapper.getAllOrders();
+        assertEquals(4, allOrders.size());
+        assertEquals(allOrders.get(0), new Orders(1, 1, "2024-01-05"));
+        assertEquals(allOrders.get(1), new Orders(2, 2, "2024-01-06"));
+        assertEquals(allOrders.get(2), new Orders(3, 3, "2024-01-10"));
+        assertEquals(allOrders.get(3), new Orders(4, 4, "2024-01-12"));
+    }
+
 
 
 }
