@@ -41,6 +41,8 @@ public class UserController {
         try {
             Users user = UserMapper.login(email, password, connectionPool);
             ctx.sessionAttribute("currentUser", user);
+            ctx.redirect("/dashboard");
+
         } catch (DatabaseException e) {
             ctx.attribute("msg", e.getMessage());
             ctx.render("login.html");

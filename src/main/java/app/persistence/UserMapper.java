@@ -17,11 +17,7 @@ public class UserMapper {
     }
 
     public static Users login(String email, String password, ConnectionPool connectionPool) throws DatabaseException {
-        String sql = """
-                SELECT u.user_id
-                FROM users u
-                WHERE u.email = ? AND u.password = ?
-                """;
+        String sql = "select * from users where email=? and password=?";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -32,7 +28,8 @@ public class UserMapper {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if(resultSet.next()){
                     int id = resultSet.getInt("user_id");
-                    return new Users(null, email, password, id);
+                    int balance = resultSet.getInt("balance");
+                    return new Users(null, email, null, id, balance);
                 }
                 else{
                     return null;
