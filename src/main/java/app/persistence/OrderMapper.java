@@ -11,6 +11,15 @@ import java.util.Collections;
 import java.util.List;
 
 public class OrderMapper {
+    private Database db;
+    public OrderMapper(Database db) {
+        this.db = db;
+    }
+
+
+
+
+
 
     public List<OrderLines> getAllOrderlines(int user_id, ConnectionPool connectionPool){
     List<OrderLines> allOrderLines = new ArrayList<>();
