@@ -160,6 +160,7 @@ class OrderMapperTest {
         assertEquals(allOrders.get(1), new Orders(2, 2, "2024-01-06"));
         assertEquals(allOrders.get(2), new Orders(3, 3, "2024-01-10"));
         assertEquals(allOrders.get(3), new Orders(4, 4, "2024-01-12"));
+        int i;
     }
 
 
