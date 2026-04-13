@@ -18,7 +18,7 @@ public class UserMapper {
 
     public static Users login(String email, String password, ConnectionPool connectionPool) throws DatabaseException {
         String sql = """
-                SELECT u.user_id
+                SELECT *
                 FROM users u
                 WHERE u.email = ? AND u.password = ?
                 """;
@@ -32,7 +32,8 @@ public class UserMapper {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if(resultSet.next()){
                     int id = resultSet.getInt("user_id");
-                    return new Users(null, email, password, id);
+                    int balance = resultSet.getInt("balance");
+                    return new Users(null, email, password, id, balance);
                 }
                 else{
                     return null;
@@ -54,7 +55,11 @@ public class UserMapper {
             ps.setString(2, email);
             ps.setString(3, password);
 
-            ps.executeUpdate();
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected != 1)
+            {
+                throw new DatabaseException("Fejl ved oprettelse af ny bruger");
+            }
 
         } catch (SQLException e) {
             throw new DatabaseException("Kunne ikke oprette bruger", e.getMessage());
