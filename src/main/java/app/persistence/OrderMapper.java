@@ -16,37 +16,32 @@ public class OrderMapper {
         this.db = db;
     }
 
-
-
-
-
-
     public List<OrderLines> getAllOrderlines(int user_id){
     List<OrderLines> allOrderLines = new ArrayList<>();
     String sql = "SELECT * FROM orderlines JOIN tops ON tops.top_id = orderlines.top_id \n" +
             "JOIN bottoms ON bottoms.bottom_id = orderlines.bottom_id\n" +
             "JOIN orders ON orders.order_id = orderlines.order_id " +
-            "WHERE user_id = ?";
+            "WHERE user_id = 1";
 
         try(
 
     Connection connection = db.connect()) {
         try(PreparedStatement ps = connection.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
-            ps.setInt(1, user_id);
+            //ps.setInt(1, user_id);
             while (rs.next()) {
-                int orderLineId = rs.getInt("orderLineId");
-                int orderId = rs.getInt("orderId");
+                int orderLineId = rs.getInt("orderline_id");
+                int orderId = rs.getInt("order_id");
                 int cupcakeTopID = rs.getInt("top_id");
                 int cupcakeBottomID = rs.getInt("bottom_id");
                 int quantity = rs.getInt("quantity");
                 int price = rs.getInt("price");
 
-                String cupcakeTopName = rs.getString("topName");
-                int cupcakeTopPrice = rs.getInt("topPrice");
+                String cupcakeTopName = rs.getString("top_name");
+                int cupcakeTopPrice = rs.getInt("top_price");
 
-                String cupcakeButtomName = rs.getString("bottomName");
-                int cupcakeButtomPrice = rs.getInt("bottomPrice");
+                String cupcakeButtomName = rs.getString("bottom_name");
+                int cupcakeButtomPrice = rs.getInt("bottom_price");
 
                 CupcakeTop cupcakeTop = new CupcakeTop
                         (cupcakeTopID, cupcakeTopName, cupcakeTopPrice);

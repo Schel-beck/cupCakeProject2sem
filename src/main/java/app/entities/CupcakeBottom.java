@@ -1,5 +1,7 @@
 package app.entities;
 
+import java.util.Objects;
+
 public class CupcakeBottom {
     private int bottom_id;
     private String bottomName;
@@ -9,5 +11,26 @@ public class CupcakeBottom {
         this.bottom_id = bottom_id;
         this.bottomName = bottomName;
         this.bottomPrice = bottomPrice;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        CupcakeBottom that = (CupcakeBottom) o;
+        return bottom_id == that.bottom_id && bottomPrice == that.bottomPrice && Objects.equals(bottomName, that.bottomName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bottom_id, bottomName, bottomPrice);
+    }
+
+    @Override
+    public String toString() {
+        return "CupcakeBottom{" +
+                "bottom_id=" + bottom_id +
+                ", bottomName='" + bottomName + '\'' +
+                ", bottomPrice=" + bottomPrice +
+                '}';
     }
 }

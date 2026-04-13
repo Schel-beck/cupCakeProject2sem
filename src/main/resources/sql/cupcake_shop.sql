@@ -9,8 +9,8 @@ BEGIN;
 CREATE TABLE IF NOT EXISTS public.bottoms
 (
     bottom_id serial,
-    name character varying(50) COLLATE pg_catalog."default",
-    price numeric(5, 2)
+    bottomName character varying(50) COLLATE pg_catalog."default",
+    bottomPrice numeric(5, 2)
     );
 
 CREATE TABLE IF NOT EXISTS public.orderlines
@@ -33,8 +33,8 @@ CREATE TABLE IF NOT EXISTS public.orders
 CREATE TABLE IF NOT EXISTS public.tops
 (
     top_id serial,
-    name character varying(50) COLLATE pg_catalog."default",
-    price numeric(5, 2)
+    topName character varying(50) COLLATE pg_catalog."default",
+    topPrice numeric(5, 2)
     );
 
 CREATE TABLE IF NOT EXISTS public.users

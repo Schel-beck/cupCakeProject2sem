@@ -107,14 +107,14 @@ class OrderMapperTest {
 
 
 
-                stmt.execute("INSERT INTO test.bottoms (bottom_id, name, price) VALUES " +
+                stmt.execute("INSERT INTO test.bottoms (bottom_id, bottom_name, bottom_price) VALUES " +
                         "(1, 'Chocolate', 5), " +
                         "(2, 'Vanilla', 4), " +
                         "(3, 'Almond', 6), " +
                         "(4, 'Red Velvet', 6)");
 
 
-                stmt.execute("INSERT INTO test.tops (top_id, name, price) VALUES " +
+                stmt.execute("INSERT INTO test.tops (top_id, top_name, top_price) VALUES " +
                         "(1, 'Chocolate Frosting', 5), " +
                         "(2, 'Vanilla Cream', 4), " +
                         "(3, 'Strawberry Swirl', 6), " +
@@ -173,7 +173,6 @@ class OrderMapperTest {
         assertEquals(allOrders.get(1), new Orders(2, 2, "2024-01-06"));
         assertEquals(allOrders.get(2), new Orders(3, 3, "2024-01-10"));
         assertEquals(allOrders.get(3), new Orders(4, 4, "2024-01-12"));
-        int i;
     }
 
 
