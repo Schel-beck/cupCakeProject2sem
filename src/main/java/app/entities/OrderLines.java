@@ -7,7 +7,7 @@ public class OrderLines {
     private CupcakeBottom cupcakeBottom;
     private int quantity;
 
-    public OrderLines(int quantity, CupcakeBottom cupcakeBottom, CupcakeTop cupcakeTop, int orderId, int orderLineId) {
+    public OrderLines(int orderLineId, int orderId, CupcakeBottom cupcakeBottom, CupcakeTop cupcakeTop,   int quantity, int price) {
         this.quantity = quantity;
         this.cupcakeBottom = cupcakeBottom;
         this.cupcakeTop = cupcakeTop;

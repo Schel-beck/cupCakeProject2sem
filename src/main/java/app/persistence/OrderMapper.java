@@ -21,7 +21,7 @@ public class OrderMapper {
 
 
 
-    public List<OrderLines> getAllOrderlines(int user_id, ConnectionPool connectionPool){
+    public List<OrderLines> getAllOrderlines(int user_id){
     List<OrderLines> allOrderLines = new ArrayList<>();
     String sql = "SELECT * FROM orderlines JOIN tops ON tops.top_id = orderlines.top_id \n" +
             "JOIN bottoms ON bottoms.bottom_id = orderlines.bottom_id\n" +
@@ -30,7 +30,7 @@ public class OrderMapper {
 
         try(
 
-    Connection connection = connectionPool.getConnection()) {
+    Connection connection = db.connect()) {
         try(PreparedStatement ps = connection.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
             ps.setInt(1, user_id);
@@ -40,12 +40,13 @@ public class OrderMapper {
                 int cupcakeTopID = rs.getInt("top_id");
                 int cupcakeBottomID = rs.getInt("bottom_id");
                 int quantity = rs.getInt("quantity");
+                int price = rs.getInt("price");
 
-                String cupcakeTopName = rs.getString("top.name");
-                int cupcakeTopPrice = rs.getInt("top.price");
+                String cupcakeTopName = rs.getString("topName");
+                int cupcakeTopPrice = rs.getInt("topPrice");
 
-                String cupcakeButtomName = rs.getString("bottoms.name");
-                int cupcakeButtomPrice = rs.getInt("bottoms.price");
+                String cupcakeButtomName = rs.getString("bottomName");
+                int cupcakeButtomPrice = rs.getInt("bottomPrice");
 
                 CupcakeTop cupcakeTop = new CupcakeTop
                         (cupcakeTopID, cupcakeTopName, cupcakeTopPrice);
@@ -53,7 +54,7 @@ public class OrderMapper {
                         (cupcakeBottomID, cupcakeButtomName, cupcakeButtomPrice);
 
                 allOrderLines.add(new OrderLines
-                        (quantity,cupcakeBottom, cupcakeTop, orderId, orderLineId ));
+                        (orderLineId, orderId, cupcakeBottom, cupcakeTop,quantity, price));
             }
         }
     } catch (

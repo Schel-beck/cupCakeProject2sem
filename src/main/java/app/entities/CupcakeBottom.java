@@ -1,13 +1,13 @@
 package app.entities;
 
 public class CupcakeBottom {
-    private int id;
-    private String name;
-    private int price;
+    private int bottom_id;
+    private String bottomName;
+    private int bottomPrice;
 
-    public CupcakeBottom(int id, String name, int price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
+    public CupcakeBottom(int bottom_id, String bottomName, int bottomPrice) {
+        this.bottom_id = bottom_id;
+        this.bottomName = bottomName;
+        this.bottomPrice = bottomPrice;
     }
 }
