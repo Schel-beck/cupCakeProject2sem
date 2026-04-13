@@ -2,7 +2,7 @@
 <html lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>OlskerCupcake_Login</title>
+    <title>OlskerCupcake_CreateAccount</title>
 
     <link rel="stylesheet" href="/css/Stylesheet.css">
 </head>
@@ -42,19 +42,23 @@
     </nav>
 
     <div class="bodyTextCenter"><h1>Velkommen</h1> </div>
-    <div class = "bodyTextCenter"> <p> Login for at bestille øens bedste cupcakes,
-        <br> eller tryk opret bruger hvis du ikke har et login
+    <div class = "bodyTextCenter"> <p> Opret en bruger for at bestille øens bedste cupcakes,
+        <br> eller tryk login hvis du har en profil
     </p>
     </div>
 
 
 </header>
 <main>
-
     <div class="login-container">
         <h2>Login</h2>
 
-        <form th:action="@{/login}" method="post">
+        <form th:action="@{/createAccount}" method="post">
+
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
 
             <div class="input-group">
                 <label for="email">Email</label>
@@ -66,7 +70,7 @@
                 <input type="password" id="password" name="password" required>
             </div>
 
-            <button type="submit">Login</button>
+            <button type="submit">Opret bruger</button>
 
         </form>
     </div>
@@ -88,12 +92,4 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
 

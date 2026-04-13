@@ -10,10 +10,19 @@ import io.javalin.http.Context;
 public class UserController {
 
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
+        app.get("/login", ctx -> ctx.render("index.html"));
+        app.post("/login", ctx -> login(ctx, connectionPool));
+
+
+        app.post("/createAccount", ctx -> createAccount(ctx, connectionPool));
+        app.get("/createAccount", ctx -> ctx.render("createAccount.html"));
+
+        app.get("/aboutUs", ctx -> ctx.render("aboutUs"));
+        app.get("/contactUs", ctx -> ctx.render("contactUs"));
 
     }
 
-    public static void registrerBruger(Context ctx, ConnectionPool connectionPool) {
+    public static void createAccount(Context ctx, ConnectionPool connectionPool) {
         String name = ctx.formParam("name");
         String password = ctx.formParam("password");
         String email = ctx.formParam("email");
@@ -22,7 +31,7 @@ public class UserController {
         if (!error.isEmpty())
         {
             ctx.attribute("msg", error);
-            ctx.render("registrerbruger.html");
+            ctx.render("createAccount.html");
         } else{
 
             try {
@@ -30,7 +39,7 @@ public class UserController {
                 ctx.render("index.html");
             } catch (DatabaseException e) {
                 ctx.attribute("msg", e.getMessage());
-                ctx.render("registrerbruger.html");
+                ctx.render("createAccount.html");
             }
         }
     }
@@ -53,7 +62,7 @@ public class UserController {
     }
 
 
-    public static String validateUser(String name, String password, String email) {
+    public static String validateUser(String name, String email, String password) {
         if (name.isEmpty()) {
             return "navn skal udfyldes";
         }
