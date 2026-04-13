@@ -9,9 +9,7 @@ import io.javalin.http.Context;
 
 public class UserController {
 
-    public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
 
-    }
 
     public static void registrerBruger(Context ctx, ConnectionPool connectionPool) {
         String name = ctx.formParam("name");
