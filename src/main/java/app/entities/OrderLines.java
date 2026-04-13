@@ -1,18 +1,46 @@
 package app.entities;
 
+import java.util.Objects;
+
 public class OrderLines {
     private int orderLineId;
     private int orderId;
     private CupcakeTop cupcakeTop;
     private CupcakeBottom cupcakeBottom;
     private int quantity;
+    private int price;
 
-    public OrderLines(int quantity, CupcakeBottom cupcakeBottom, CupcakeTop cupcakeTop, int orderId, int orderLineId) {
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderLines that = (OrderLines) o;
+        return orderLineId == that.orderLineId && orderId == that.orderId && quantity == that.quantity && Objects.equals(cupcakeTop, that.cupcakeTop) && Objects.equals(cupcakeBottom, that.cupcakeBottom);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderLineId, orderId, cupcakeTop, cupcakeBottom, quantity);
+    }
+
+    public OrderLines(int orderLineId, int orderId, CupcakeBottom cupcakeBottom, CupcakeTop cupcakeTop, int quantity, int price) {
         this.quantity = quantity;
         this.cupcakeBottom = cupcakeBottom;
         this.cupcakeTop = cupcakeTop;
         this.orderId = orderId;
         this.orderLineId = orderLineId;
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderLines{" +
+                "orderLineId=" + orderLineId +
+                ", orderId=" + orderId +
+                ", cupcakeTop=" + cupcakeTop +
+                ", cupcakeBottom=" + cupcakeBottom +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                '}';
     }
 }
 

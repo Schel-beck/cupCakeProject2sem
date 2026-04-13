@@ -1,5 +1,8 @@
 package app.persistence;
 
+import app.entities.CupcakeBottom;
+import app.entities.CupcakeTop;
+import app.entities.OrderLines;
 import app.entities.Orders;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -104,14 +107,14 @@ class OrderMapperTest {
 
 
 
-                stmt.execute("INSERT INTO test.bottoms (bottom_id, name, price) VALUES " +
+                stmt.execute("INSERT INTO test.bottoms (bottom_id, bottom_name, bottom_price) VALUES " +
                         "(1, 'Chocolate', 5), " +
                         "(2, 'Vanilla', 4), " +
                         "(3, 'Almond', 6), " +
                         "(4, 'Red Velvet', 6)");
 
 
-                stmt.execute("INSERT INTO test.tops (top_id, name, price) VALUES " +
+                stmt.execute("INSERT INTO test.tops (top_id, top_name, top_price) VALUES " +
                         "(1, 'Chocolate Frosting', 5), " +
                         "(2, 'Vanilla Cream', 4), " +
                         "(3, 'Strawberry Swirl', 6), " +
@@ -149,6 +152,16 @@ class OrderMapperTest {
     }
     @Test
     void getAllOrderlines() {
+        List<OrderLines> allOrderLines = orderMapper.getAllOrderlines(1);
+
+        assertEquals(2, allOrderLines.size());
+        CupcakeTop oneTop = new CupcakeTop(1, "Chocolate Frosting", 5);
+        CupcakeTop twoTop = new CupcakeTop(2, "Vanilla Cream", 4);
+
+        CupcakeBottom oneBot = new CupcakeBottom(1, "Chocolate", 5);
+        CupcakeBottom twoBot = new CupcakeBottom(2, "Vanilla", 4);
+
+        assertEquals(new OrderLines(1, 1, twoBot, oneTop, 2, 18), allOrderLines.get(1));
 
     }
 
@@ -160,7 +173,6 @@ class OrderMapperTest {
         assertEquals(allOrders.get(1), new Orders(2, 2, "2024-01-06"));
         assertEquals(allOrders.get(2), new Orders(3, 3, "2024-01-10"));
         assertEquals(allOrders.get(3), new Orders(4, 4, "2024-01-12"));
-        int i;
     }
 
 
