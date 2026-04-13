@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>cupcake_Orders</title>
+
+    <link rel="stylesheet" href="/css/Stylesheet.css">
+</head>
+
+<body>
+
+
+<header>
+    <div class="header">
+        <div class="logoplace">
+            <a th:href="@{/index}">
+                <img src="/img/cupcakelogo.png" class="logoSize">
+            </a>
+        </div>
+
+    </div>
+
+
+    <ul class="menu">
+        <div class="left">
+            <li><a th:href="@{/login}"> Login </a></li>
+            <li><a th:href="@{/createAccount}"> Opret bruger </a></li>
+        </div>
+
+
+        <div class="right">
+            <li><a th:href="@{/cupcakes}"> Cupcakes </a></li>
+            <li><a th:href="@{/creatingPanel}"> Creating Panel </a></li>
+        </div>
+    </ul>
+
+
+    <nav class="navCenter">
+        <div class="menuLine">
+            <span class="diamond"></span>
+        </div>
+    </nav>
+
+</header>
+<main>
+    <nav class="navCentrum">
+
+        <h1>
+            Contact us
+        </h1>
+
+        <div class="bodyTextCenter">
+
+            Beklager denne side er ude af drift.
+        </div>
+    </nav>
+</main>
+
+<footer class="footer">
+    <div class="footer-content">
+        <ul class="footer-links">
+            <li><a th:href="@{/aboutUs}"> Om os </a></li>
+            <li><a th:href="@{/contactUs}"> Kontagt os </a></li>
+        </ul>
+    </div>
+</footer>
+
+
+</body>
+
+</html>
