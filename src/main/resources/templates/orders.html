@@ -2,10 +2,11 @@
 <html lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>OlskerCupcake_Login</title>
+    <title>cupcake_Orders</title>
 
     <link rel="stylesheet" href="/css/Stylesheet.css">
 </head>
+
 <body>
 
 
@@ -16,7 +17,6 @@
                 <img src="/img/cupcakelogo.png" class="logoSize">
             </a>
         </div>
-
 
     </div>
 
@@ -41,59 +41,40 @@
         </div>
     </nav>
 
-    <div class="bodyTextCenter"><h1>Velkommen</h1> </div>
-    <div class = "bodyTextCenter"> <p> Login for at bestille øens bedste cupcakes,
-        <br> eller tryk opret bruger hvis du ikke har et login
-    </p>
-    </div>
-
-
 </header>
 <main>
+    <nav class="navCentrum">
 
-    <div class="login-container">
-        <h2>Login</h2>
+        <h1>
+            Orders Bistill cupcakes her
+        </h1>
 
-        <form th:action="@{/login}" method="post">
+        <div class="bodyTextCenter">
+            Beklager denne side er ude af drift.
+        </div>
+        <div>
+            <form class = "save_cupcake" th:action="@{/orders}" method="POST">
+                <div class = boxDisplay >
+                    <option disabled selected value>vælg bund</option>
+                    <option th:each="CupcakeBottom : ${bund_options}" th:value="${cupcakebottom.bottomId}"
+                            th:text="${cupcakebottom.bottomname + ' ' + bottom.bottomPrice} + ' DKK'">
+                    </option>
+                </div>
 
-            <div class="input-group">
-                <label for="email">Email</label>
-                <input type="text" id="email" name="email" required>
-            </div>
-
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-
-            <button type="submit">Login</button>
-
-        </form>
-    </div>
-
-
+        </div>
+    </nav>
 </main>
 
 <footer class="footer">
     <div class="footer-content">
         <ul class="footer-links">
             <li><a th:href="@{/aboutUs}"> Om os </a></li>
-            <li><a th:href="@{/contactUs}"> Kontakt os </a></li>
+            <li><a th:href="@{/contactUs}"> Kontagt os </a></li>
         </ul>
     </div>
 </footer>
 
-<script src="/js/accountSession.js"></script>
 
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
