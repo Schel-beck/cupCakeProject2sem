@@ -17,9 +17,10 @@ public static void addRoutes(Javalin app){
 
     ConnectionPool connectionPool = ConnectionPool.getInstance();
 
+    app.get("/orders", ctx -> loadOrderPage(ctx, connectionPool));
     app.post("/orders", ctx -> {getAllBottoms(ctx, connectionPool);
     getAllTops(ctx, connectionPool);});
-    app.get("/orders", ctx -> loadOrderPage(ctx, connectionPool));
+
 }
 
 
@@ -30,7 +31,7 @@ public static void addRoutes(Javalin app){
 
         try{
             CupcakeMapper cupcakeMapper = new CupcakeMapper();
-            allBottoms =cupcakeMapper.getAllCupcakeBottoms(connectionPool);
+            allBottoms = cupcakeMapper.getAllCupcakeBottoms(connectionPool);
             ctx.sessionAttribute("bottom_options", allBottoms);
             ctx.sessionAttribute("bottom_options", allBottoms);
             ctx.redirect("/orders");

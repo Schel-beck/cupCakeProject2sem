@@ -46,21 +46,36 @@
     <nav class="navCentrum">
 
         <h1>
-            Orders Bistill cupcakes her
+            Bestil cupcakes her
         </h1>
 
         <div class="bodyTextCenter">
-            Beklager denne side er ude af drift.
+            Vælg bund og topping for at bestille din cupcake
         </div>
         <div>
-            <form class = "save_cupcake" th:action="@{/orders}" method="POST">
-                <div class = boxDisplay >
-                    <option disabled selected value>vælg bund</option>
-                    <option th:each="CupcakeBottom : ${bund_options}" th:value="${cupcakebottom.bottomId}"
-                            th:text="${cupcakebottom.bottomname + ' ' + bottom.bottomPrice} + ' DKK'">
-                    </option>
+            <form class="save_cupcake" th:action="@{/orders}" method="POST">
+
+                <div class="boxDisplay">
+                    <select name="bottomId">
+                        <option disabled selected value>vælg bund</option>
+                        <option th:each="cupcakebottom : ${bottom_options}"
+                                th:value="${cupcakebottom.bottom_Id}"
+                                th:text="${cupcakebottom.bottomname + ' - ' + cupcakebottom.bottomPrice + ' DKK'}">
+                        </option>
+                    </select>
                 </div>
 
+                <div class="boxDisplay">
+                    <select name="topId">
+                        <option disabled selected value>vælg topping</option>
+                        <option th:each="cupcaketop : ${top_options}"
+                                th:value="${cupcaketop.top_Id}"
+                                th:text="${cupcaketop.topname + ' - ' + cupcaketop.topPrice + ' DKK'}">
+                        </option>
+                    </select>
+                </div>
+
+            </form>
         </div>
     </nav>
 </main>
@@ -69,7 +84,7 @@
     <div class="footer-content">
         <ul class="footer-links">
             <li><a th:href="@{/aboutUs}"> Om os </a></li>
-            <li><a th:href="@{/contactUs}"> Kontagt os </a></li>
+            <li><a th:href="@{/contactUs}"> Kontakt os </a></li>
         </ul>
     </div>
 </footer>
