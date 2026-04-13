@@ -1,6 +1,6 @@
 package app.entities;
 
-public class Cupcake {
+/* public class Cupcake {
     private CupcakeBottom bottom;
     private CupcakeTop top;
     private int id;
@@ -16,12 +16,6 @@ public class Cupcake {
 
     }
 
-    public int getCupcakeBottom(){
-        return bottom;
-    }
-    public  setCupcakeBottom(CupcakeBottom bottom){
-        this.bottom;
-    }
 
 
     public CupcakeBottom getBottom() {
@@ -48,3 +42,4 @@ public class Cupcake {
         this.id = id;
     }
 }
+*/

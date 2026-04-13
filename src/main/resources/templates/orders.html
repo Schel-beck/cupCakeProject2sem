@@ -29,7 +29,7 @@
 
 
         <div class="right">
-            <li><a th:href="@{/cupcakes}"> Cupcakes </a></li>
+            <li><a th:href="@{/orders}"> Cupcakes </a></li>
             <li><a th:href="@{/creatingPanel}"> Creating Panel </a></li>
         </div>
     </ul>
@@ -46,12 +46,21 @@
     <nav class="navCentrum">
 
         <h1>
-            Contact us
+            Orders Bistill cupcakes her
         </h1>
 
         <div class="bodyTextCenter">
-
             Beklager denne side er ude af drift.
+        </div>
+        <div>
+            <form class = "save_cupcake" th:action="@{/orders}" method="POST">
+                <div class = boxDisplay >
+                    <option disabled selected value>vælg bund</option>
+                    <option th:each="CupcakeBottom : ${bund_options}" th:value="${cupcakebottom.bottomId}"
+                            th:text="${cupcakebottom.bottomname + ' ' + bottom.bottomPrice} + ' DKK'">
+                    </option>
+                </div>
+
         </div>
     </nav>
 </main>
