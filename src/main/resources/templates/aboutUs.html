@@ -2,21 +2,21 @@
 <html lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>OlskerCupcake_Login</title>
+    <title>cupcake_About_us</title>
 
     <link rel="stylesheet" href="/css/Stylesheet.css">
 </head>
+
 <body>
 
 
 <header>
     <div class="header">
         <div class="logoplace">
-            <a th:href="@{/index}">
+            <a href="/index">
                 <img src="/img/cupcakelogo.png" class="logoSize">
             </a>
         </div>
-
 
     </div>
 
@@ -41,35 +41,21 @@
         </div>
     </nav>
 
-    <div class="bodyTextCenter"><h1>Velkommen</h1> </div>
-    <div class = "bodyTextCenter"> <p> Login for at bestille øens bedste cupcakes,
-        <br> eller tryk opret bruger hvis du ikke har et login
-    </p>
-    </div>
-
-
 </header>
+
 <main>
-    <div class="login-container">
-        <h2>Login</h2>
 
-        <form th:action="@{/login}" method="post">
+    <nav class ="navCentrum">
 
-            <div class="input-group">
-                <label for="email">Email</label>
-                <input type="text" id="email" name="email" required>
-            </div>
+        <h1>
+            Om os
+        </h1>
 
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
+        <div class="bodyTextCenter">
 
-            <button type="submit">Login</button>
-
-        </form>
-    </div>
-
+            Olsker Cupcakes er et bageri der specialisere sig i små lette og skrædersyget cupcakes.
+        </div>
+    </nav>
 
 </main>
 
@@ -82,17 +68,8 @@
     </div>
 </footer>
 
-<script src="/js/accountSession.js"></script>
+<script src="/js/Favorites.js"></script>
 
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
