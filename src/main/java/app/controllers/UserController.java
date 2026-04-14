@@ -7,6 +7,8 @@ import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
+
+
 public class UserController {
 
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
