@@ -7,6 +7,8 @@ import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
+
+
 public class UserController {
 
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
@@ -20,6 +22,7 @@ public class UserController {
         app.get("/aboutUs", ctx -> ctx.render("aboutUs"));
         app.get("/contactUs", ctx -> ctx.render("contactUs"));
 
+    }
 
     public static void createAccount(Context ctx, ConnectionPool connectionPool) {
         String name = ctx.formParam("name");

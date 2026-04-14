@@ -13,8 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class OrderMapperTest {
@@ -25,7 +23,6 @@ class OrderMapperTest {
 
     private static Database db;
     private static OrderMapper orderMapper;
-    private static ConnectionPool connectionPool;
 
     @BeforeAll
     public static void setUpClass() {
@@ -110,14 +107,14 @@ class OrderMapperTest {
 
 
 
-                stmt.execute("INSERT INTO test.bottoms (bottom_id, bottomName, bottomPrice) VALUES " +
+                stmt.execute("INSERT INTO test.bottoms (bottom_id, bottom_name, bottom_price) VALUES " +
                         "(1, 'Chocolate', 5), " +
                         "(2, 'Vanilla', 4), " +
                         "(3, 'Almond', 6), " +
                         "(4, 'Red Velvet', 6)");
 
 
-                stmt.execute("INSERT INTO test.tops (top_id, topName, topPrice) VALUES " +
+                stmt.execute("INSERT INTO test.tops (top_id, top_name, top_price) VALUES " +
                         "(1, 'Chocolate Frosting', 5), " +
                         "(2, 'Vanilla Cream', 4), " +
                         "(3, 'Strawberry Swirl', 6), " +
@@ -170,7 +167,7 @@ class OrderMapperTest {
 
     @Test
     void getAllOrders(){
-        List<Orders> allOrders = OrderMapper.getAllOrders(connectionPool);
+        List<Orders> allOrders = OrderMapper.getAllOrders();
         assertEquals(4, allOrders.size());
         assertEquals(allOrders.get(0), new Orders(1, 1, "2024-01-05"));
         assertEquals(allOrders.get(1), new Orders(2, 2, "2024-01-06"));
