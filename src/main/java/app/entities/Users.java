@@ -7,12 +7,14 @@ public class Users {
     private String user_email;
     private String password;
     private int user_id;
+    private int balance;
 
-    public Users(String name,String email, String password, int user_id) {
+    public Users(String name, String email, String password, int user_id, int balance) {
         this.name = name;
         this.user_email = email;
         this.password = password;
         this.user_id = user_id;
+        this.balance = balance;
     }
 
 
@@ -46,6 +48,10 @@ public class Users {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    public void getbalance() {
+        this.balance = balance;
     }
 
     @Override

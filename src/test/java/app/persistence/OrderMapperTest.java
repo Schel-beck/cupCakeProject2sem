@@ -1,5 +1,8 @@
 package app.persistence;
 
+import app.entities.CupcakeBottom;
+import app.entities.CupcakeTop;
+import app.entities.OrderLines;
 import app.entities.Orders;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -152,6 +155,16 @@ class OrderMapperTest {
     }
     @Test
     void getAllOrderlines() {
+        List<OrderLines> allOrderLines = orderMapper.getAllOrderlines(1);
+
+        assertEquals(2, allOrderLines.size());
+        CupcakeTop oneTop = new CupcakeTop(1, "Chocolate Frosting", 5);
+        CupcakeTop twoTop = new CupcakeTop(2, "Vanilla Cream", 4);
+
+        CupcakeBottom oneBot = new CupcakeBottom(1, "Chocolate", 5);
+        CupcakeBottom twoBot = new CupcakeBottom(2, "Vanilla", 4);
+
+        assertEquals(new OrderLines(1, 1, twoBot, oneTop, 2, 18), allOrderLines.get(1));
 
     }
 

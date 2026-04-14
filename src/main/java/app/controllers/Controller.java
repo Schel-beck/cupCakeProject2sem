@@ -11,6 +11,10 @@ import java.util.List;
 
 public class Controller {
 
+    public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
+
+    }
+
     public static void getAllOrders(Context ctx, ConnectionPool connectionPool){
 
         List<Orders> ordersList =  OrderMapper.getAllOrders(connectionPool);

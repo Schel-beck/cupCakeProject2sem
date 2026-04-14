@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>cupcake_Orders</title>
+
+    <link rel="stylesheet" href="/css/Stylesheet.css">
+</head>
+
+<body>
+
+
+<header>
+    <div class="header">
+        <div class="logoplace">
+            <a th:href="@{/index}">
+                <img src="/img/cupcakelogo.png" class="logoSize">
+            </a>
+        </div>
+
+    </div>
+
+
+    <ul class="menu">
+        <div class="left">
+            <li><a th:href="@{/login}"> Login </a></li>
+            <li><a th:href="@{/createAccount}"> Opret bruger </a></li>
+        </div>
+
+
+        <div class="right">
+            <li><a th:href="@{/orders}"> Cupcakes </a></li>
+            <li><a th:href="@{/creatingPanel}"> Creating Panel </a></li>
+        </div>
+    </ul>
+
+
+    <nav class="navCenter">
+        <div class="menuLine">
+            <span class="diamond"></span>
+        </div>
+    </nav>
+
+</header>
+<main>
+    <nav class="navCentrum">
+
+        <h1>
+            Bestil cupcakes her
+        </h1>
+
+        <div class="bodyTextCenter">
+            Vælg bund og topping for at bestille din cupcake
+        </div>
+        <div>
+            <form class="save_cupcake" th:action="@{/orders}" method="POST">
+
+                <div class="boxDisplay">
+                    <select name="bottomId">
+                        <option disabled selected value>vælg bund</option>
+                        <option th:each="cupcakebottom : ${bottom_options}"
+                                th:value="${cupcakebottom.bottom_Id}"
+                                th:text="${cupcakebottom.bottomname + ' - ' + cupcakebottom.bottomPrice + ' DKK'}">
+                        </option>
+                    </select>
+
+                    <select name="topId">
+                        <option disabled selected value>vælg topping</option>
+                        <option th:each="cupcaketop : ${top_options}"
+                                th:value="${cupcaketop.top_Id}"
+                                th:text="${cupcaketop.topname + ' - ' + cupcaketop.topPrice + ' DKK'}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="actions">
+                    <button type="button" class="plusBtn">+</button>
+                    <button type="submit" class="orderBtn">Læg i kurv</button>
+                </div>
+
+            </form>
+        </div>
+    </nav>
+</main>
+
+<footer class="footer">
+    <div class="footer-content">
+        <ul class="footer-links">
+            <li><a th:href="@{/aboutUs}"> Om os </a></li>
+            <li><a th:href="@{/contactUs}"> Kontakt os </a></li>
+        </ul>
+    </div>
+</footer>
+
+
+</body>
+
+</html>

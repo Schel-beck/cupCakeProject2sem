@@ -1,8 +1,9 @@
 package app;
 
-import app.config.SessionConfig;
 import app.config.ThymeleafConfig;
+import app.controllers.CupcakeController;
 import app.controllers.Controller;
+import app.controllers.UserController;
 import app.persistence.ConnectionPool;
 import app.persistence.Database;
 import app.persistence.OrderMapper;
@@ -35,5 +36,10 @@ public class Main {
 
         app.get("/", ctx ->  ctx.render("index.html"));
         app.get("/adminPageAllOrders", ctx -> Controller.getAllOrders(ctx, connectionPool));
+        Controller.addRoutes(app, connectionPool);
+        UserController.addRoutes(app, connectionPool);
+        CupcakeController.addRoutes(app, connectionPool);
+
+
     }
 }

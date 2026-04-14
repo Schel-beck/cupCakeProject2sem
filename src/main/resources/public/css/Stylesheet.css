@@ -627,3 +627,11 @@ td {
 tr:hover {
     background-color: #fafafa;
 }
+/*---Save form ---*/
+.save_cupcake{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 0 40% 2rem;
+}

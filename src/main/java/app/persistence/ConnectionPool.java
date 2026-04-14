@@ -14,13 +14,24 @@ public class ConnectionPool {
     private static volatile ConnectionPool instance = null;
     private static HikariDataSource ds = null;
     private static final Logger LOGGER = Logger.getLogger(ConnectionPool.class.getName());
+    private static final String JDBC_USER = "postgres";
+    private static final String JDBC_PASSWORD = System.getenv("postgres");
+    private static final String JDBC_URL = "http://localhost:5432/%s?currentSchema=public";
+    private static final String JDBC_DB = "cupcake_shop";
 
 
-    private ConnectionPool() {
+    private ConnectionPool()
+    {
     }
 
 
-    public static ConnectionPool getInstance(String user, String password, String url, String db) {
+    public static ConnectionPool getInstance()
+    {
+        return getInstance(JDBC_USER,JDBC_PASSWORD, JDBC_URL, JDBC_DB);
+    }
+
+    public static ConnectionPool getInstance(String user, String password, String url, String db)
+    {
         if (instance == null) {
             synchronized (ConnectionPool.class) {
                 if (instance == null) {
