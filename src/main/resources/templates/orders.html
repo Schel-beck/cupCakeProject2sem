@@ -43,44 +43,42 @@
 
 </header>
 <main>
-    <nav class="navCentrum">
+    <nav class="orderContainer">
 
-        <h1>
-            Bestil cupcakes her
-        </h1>
+    <h1>Velkommen ombord</h1>
+    <p>Øens bedste cupcakes. vælg og bestil her:</p>
 
-        <div class="bodyTextCenter">
-            Vælg bund og topping for at bestille din cupcake
+    <form class="orderForm" th:action="@{/orders}" method="POST">
+
+        <div class="orderRow">
+            <select name="bottomId">
+                <option disabled selected value>vælg bund</option>
+                <option th:each="cupcakebottom : ${bottom_options}"
+                        th:value="${cupcakebottom.bottom_Id}"
+                        th:text="${cupcakebottom.bottomname + ' - ' + cupcakebottom.bottomprice + ' DKK'}">
+                </option>
+            </select>
+
+            <select name="topId">
+                <option disabled selected value>vælg topping</option>
+                <option th:each="cupcaketop : ${top_options}"
+                        th:value="${cupcaketop.top_Id}"
+                        th:text="${cupcaketop.topname + ' - ' + cupcaketop.topPrice + ' DKK'}">
+                </option>
+            </select>
+
+            <input type="number" name="amount" placeholder="vælg antal">
         </div>
-        <div>
-            <form class="save_cupcake" th:action="@{/orders}" method="POST">
 
-                <div class="boxDisplay">
-                    <select name="bottomId">
-                        <option disabled selected value>vælg bund</option>
-                        <option th:each="cupcakebottom : ${bottom_options}"
-                                th:value="${cupcakebottom.bottom_Id}"
-                                th:text="${cupcakebottom.bottomname + ' - ' + cupcakebottom.bottomprice + ' DKK'}">
-                        </option>
-                    </select>
-
-                    <select name="topId">
-                        <option disabled selected value>vælg topping</option>
-                        <option th:each="cupcaketop : ${top_options}"
-                                th:value="${cupcaketop.top_Id}"
-                                th:text="${cupcaketop.topname + ' - ' + cupcaketop.topPrice + ' DKK'}">
-                        </option>
-                    </select>
-                </div>
-
-                <div class="actions">
-                    <button type="button" class=" ">+</button>
-                    <button type="submit" class=" ">Læg i kurv</button>
-                </div>
-
-            </form>
+        <div class="orderActions">
+            <button type="button" >+</button>
+            <button type="submit" class="cartBtn">Læg i kurv</button>
         </div>
-    </nav>
+
+    </form>
+
+
+</nav>
 </main>
 
 <footer class="footer">
