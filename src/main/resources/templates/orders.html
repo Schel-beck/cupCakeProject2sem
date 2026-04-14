@@ -63,9 +63,7 @@
                                 th:text="${cupcakebottom.bottomname + ' - ' + cupcakebottom.bottomPrice + ' DKK'}">
                         </option>
                     </select>
-                </div>
 
-                <div class="boxDisplay">
                     <select name="topId">
                         <option disabled selected value>vælg topping</option>
                         <option th:each="cupcaketop : ${top_options}"
@@ -73,6 +71,11 @@
                                 th:text="${cupcaketop.topname + ' - ' + cupcaketop.topPrice + ' DKK'}">
                         </option>
                     </select>
+                </div>
+
+                <div class="actions">
+                    <button type="button" class="plusBtn">+</button>
+                    <button type="submit" class="orderBtn">Læg i kurv</button>
                 </div>
 
             </form>
