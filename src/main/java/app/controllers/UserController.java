@@ -55,7 +55,7 @@ public class UserController {
 
             if (user == null) {
                 ctx.attribute("msg", "Forkert email eller password");
-                ctx.render("login.html");
+                ctx.render("index.html");
                 return;
             }
 
@@ -69,7 +69,7 @@ public class UserController {
 
         } catch (DatabaseException e) {
             ctx.attribute("msg", e.getMessage());
-            ctx.render("login.html");
+            ctx.render("index.html");
         }
     }
 
