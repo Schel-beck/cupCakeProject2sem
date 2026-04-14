@@ -56,7 +56,7 @@ public class Users {
         this.balance = balance;
     }
 
-    public boolean is_admin() {
+    public boolean isAdmin() {
         return is_admin;
     }
 

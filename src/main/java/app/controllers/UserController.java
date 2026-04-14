@@ -49,9 +49,26 @@ public class UserController {
     public static void login(Context ctx, ConnectionPool connectionPool) {
         String email = ctx.formParam("email");
         String password = ctx.formParam("password");
+
         try {
             Users user = UserMapper.login(email, password, connectionPool);
+
+            if (user == null) {
+                ctx.attribute("msg", "Forkert email eller password");
+                ctx.render("login.html");
+                return;
+            }
+
+            // gem user i session
             ctx.sessionAttribute("currentUser", user);
+
+            // 🔥 ADMIN CHECK HER
+            if (user.isAdmin()) {
+                ctx.redirect("/adminPageAllOrders");
+            } else {
+                ctx.redirect("/orders");
+            }
+
         } catch (DatabaseException e) {
             ctx.attribute("msg", e.getMessage());
             ctx.render("login.html");
