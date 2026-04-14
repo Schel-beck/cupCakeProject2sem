@@ -28,10 +28,10 @@ public class Main {
 
         app.get("/", ctx ->  ctx.render("index.html"));
 
+        CupcakeController.addRoutes(app);
 
         Controller.addRoutes(app, connectionPool);
         UserController.addRoutes(app, connectionPool);
-        CupcakeController.addRoutes(app, connectionPool);
 
 
     }

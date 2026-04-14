@@ -23,14 +23,14 @@ public class CupcakeMapper {
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
-                int bottom_Id = rs.getInt("bottom_id");
+                int bottomId = rs.getInt("bottom_id");
                 int bottomPrice = rs.getInt("price");
                 String bottomName = rs.getString("name");
-                cupcakeBottomList.add(new CupcakeBottom(bottom_Id, bottomName, bottomPrice));
+                cupcakeBottomList.add(new CupcakeBottom(bottomId, bottomName, bottomPrice));
 
             }
         }catch(SQLException e){
-            throw new DatabaseException("Something went wrong in fetching bottoms in Database", e.getMessage());
+            throw new DatabaseException("Something went wrong in feting bottoms in Database", e.getMessage());
         }
         return cupcakeBottomList;
 
@@ -45,10 +45,10 @@ public class CupcakeMapper {
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
-                int top_Id = rs.getInt("top_id");
+                int topId = rs.getInt("top_id");
                 int topPrice = rs.getInt("price");
                 String topName = rs.getString("name");
-                cupcakeTopList.add(new CupcakeTop(top_Id, topName, topPrice));
+                cupcakeTopList.add(new CupcakeTop(topId, topName, topPrice));
 
             }
         }catch(SQLException e){
