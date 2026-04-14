@@ -59,10 +59,8 @@ public class UserController {
                 return;
             }
 
-            // gem user i session
             ctx.sessionAttribute("currentUser", user);
 
-            // 🔥 ADMIN CHECK HER
             if (user.isAdmin()) {
                 ctx.redirect("/adminPageAllOrders");
             } else {
