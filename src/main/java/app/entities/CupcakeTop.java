@@ -13,18 +13,6 @@ public class CupcakeTop {
         this.topPrice = topPrice;
     }
 
-    public int getTop_id() {
-        return top_id;
-    }
-
-    public String getTopName() {
-        return topName;
-    }
-
-    public int getTopPrice() {
-        return topPrice;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
