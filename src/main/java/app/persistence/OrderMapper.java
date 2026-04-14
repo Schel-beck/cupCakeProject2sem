@@ -24,7 +24,7 @@ public class OrderMapper {
 
         try(
 
-    Connection connection = db.connect()) {
+    Connection connection = connectionPool.getConnection()) {
         try(PreparedStatement ps = connection.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
             //ps.setInt(1, user_id);
