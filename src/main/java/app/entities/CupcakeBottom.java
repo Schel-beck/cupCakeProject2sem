@@ -13,6 +13,18 @@ public class CupcakeBottom {
         this.bottomPrice = bottomPrice;
     }
 
+    public int getBottom_id() {
+        return bottom_id;
+    }
+
+    public String getBottomName() {
+        return bottomName;
+    }
+
+    public int getBottomPrice() {
+        return bottomPrice;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
