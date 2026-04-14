@@ -595,38 +595,6 @@ button:hover {
     text-align: center;
 }
 
-
-.container {
-    width: 80%;
-    margin: 40px auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 18px;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-th {
-    background-color: #f7f7f7;
-    padding: 14px;
-    text-align: left;
-    font-weight: bold;
-    border-bottom: 2px solid #ddd;
-}
-
-td {
-    padding: 12px 14px;
-    border-bottom: 1px solid #eee;
-}
-
-tr:hover {
-    background-color: #fafafa;
-}
 /*---Save form ---*/
 .save_cupcake{
     justify-content: center;
