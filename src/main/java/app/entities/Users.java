@@ -8,13 +8,15 @@ public class Users {
     private String password;
     private int user_id;
     private int balance;
+    private boolean is_admin;
 
-    public Users(String name, String email, String password, int user_id, int balance) {
+    public Users(String name, String email, String password, int user_id, int balance, boolean is_admin) {
         this.name = name;
         this.user_email = email;
         this.password = password;
         this.user_id = user_id;
         this.balance = balance;
+        this.is_admin = is_admin;
     }
 
 
@@ -52,6 +54,14 @@ public class Users {
 
     public void getbalance() {
         this.balance = balance;
+    }
+
+    public boolean is_admin() {
+        return is_admin;
+    }
+
+    public void setIs_admin(boolean is_admin) {
+        this.is_admin = is_admin;
     }
 
     @Override

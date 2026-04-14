@@ -33,7 +33,8 @@ public class UserMapper {
                 if(resultSet.next()){
                     int id = resultSet.getInt("user_id");
                     int balance = resultSet.getInt("balance");
-                    return new Users(null, email, password, id, balance);
+                    boolean is_admin = resultSet.getBoolean("is_admin");
+                    return new Users(null, email, password, id, balance, is_admin);
                 }
                 else{
                     return null;

@@ -4,13 +4,13 @@ import java.util.Objects;
 
 public class CupcakeBottom {
     private int bottom_id;
-    private String bottomName;
-    private int bottomPrice;
+    private String bottom_name;
+    private int bottom_price;
 
-    public CupcakeBottom(int bottom_id, String bottomName, int bottomPrice) {
+    public CupcakeBottom(int bottom_id, String bottom_name, int bottom_price) {
         this.bottom_id = bottom_id;
-        this.bottomName = bottomName;
-        this.bottomPrice = bottomPrice;
+        this.bottom_name = bottom_name;
+        this.bottom_price = bottom_price;
     }
 
     public int getBottom_id() {
@@ -18,31 +18,31 @@ public class CupcakeBottom {
     }
 
     public String getBottomName() {
-        return bottomName;
+        return bottom_name;
     }
 
     public int getBottomPrice() {
-        return bottomPrice;
+        return bottom_price;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         CupcakeBottom that = (CupcakeBottom) o;
-        return bottom_id == that.bottom_id && bottomPrice == that.bottomPrice && Objects.equals(bottomName, that.bottomName);
+        return bottom_id == that.bottom_id && bottom_price == that.bottom_price && Objects.equals(bottom_name, that.bottom_name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bottom_id, bottomName, bottomPrice);
+        return Objects.hash(bottom_id, bottom_name, bottom_price);
     }
 
     @Override
     public String toString() {
         return "CupcakeBottom{" +
                 "bottom_id=" + bottom_id +
-                ", bottomName='" + bottomName + '\'' +
-                ", bottomPrice=" + bottomPrice +
+                ", bottomName='" + bottom_name + '\'' +
+                ", bottomPrice=" + bottom_price +
                 '}';
     }
 }

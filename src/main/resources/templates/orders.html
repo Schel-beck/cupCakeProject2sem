@@ -60,7 +60,7 @@
                         <option disabled selected value>vælg bund</option>
                         <option th:each="cupcakebottom : ${bottom_options}"
                                 th:value="${cupcakebottom.bottom_Id}"
-                                th:text="${cupcakebottom.bottomname + ' - ' + cupcakebottom.bottomPrice + ' DKK'}">
+                                th:text="${cupcakebottom.bottom_name + ' - ' + cupcakebottom.bottom_price + ' DKK'}">
                         </option>
                     </select>
 
@@ -68,14 +68,14 @@
                         <option disabled selected value>vælg topping</option>
                         <option th:each="cupcaketop : ${top_options}"
                                 th:value="${cupcaketop.top_Id}"
-                                th:text="${cupcaketop.topname + ' - ' + cupcaketop.topPrice + ' DKK'}">
+                                th:text="${cupcaketop.top_name + ' - ' + cupcaketop.top_Price + ' DKK'}">
                         </option>
                     </select>
                 </div>
 
                 <div class="actions">
-                    <button type="button" class="plusBtn">+</button>
-                    <button type="submit" class="orderBtn">Læg i kurv</button>
+                    <button type="button" class=" ">+</button>
+                    <button type="submit" class=" ">Læg i kurv</button>
                 </div>
 
             </form>

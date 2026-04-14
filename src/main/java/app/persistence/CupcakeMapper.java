@@ -24,9 +24,9 @@ public class CupcakeMapper {
 
             while(rs.next()){
                 int bottom_Id = rs.getInt("bottom_id");
-                int bottomPrice = rs.getInt("price");
-                String bottomName = rs.getString("name");
-                cupcakeBottomList.add(new CupcakeBottom(bottom_Id, bottomName, bottomPrice));
+                int bottom_price = rs.getInt("bottom_price");
+                String bottom_name = rs.getString("bottom_name");
+                cupcakeBottomList.add(new CupcakeBottom(bottom_Id, bottom_name, bottom_price));
 
             }
         }catch(SQLException e){
@@ -46,9 +46,9 @@ public class CupcakeMapper {
 
             while(rs.next()){
                 int top_Id = rs.getInt("top_id");
-                int topPrice = rs.getInt("price");
-                String topName = rs.getString("name");
-                cupcakeTopList.add(new CupcakeTop(top_Id, topName, topPrice));
+                int top_price = rs.getInt("top_price");
+                String top_name = rs.getString("tlop_name");
+                cupcakeTopList.add(new CupcakeTop(top_Id, top_name, top_price));
 
             }
         }catch(SQLException e){
