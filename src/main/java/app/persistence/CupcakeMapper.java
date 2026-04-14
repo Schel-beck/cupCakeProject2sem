@@ -47,7 +47,7 @@ public class CupcakeMapper {
             while(rs.next()){
                 int top_Id = rs.getInt("top_id");
                 int top_price = rs.getInt("top_price");
-                String top_name = rs.getString("tlop_name");
+                String top_name = rs.getString("top_name");
                 cupcakeTopList.add(new CupcakeTop(top_Id, top_name, top_price));
 
             }

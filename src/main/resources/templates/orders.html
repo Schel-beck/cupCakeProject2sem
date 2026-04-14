@@ -60,7 +60,7 @@
                         <option disabled selected value>vælg bund</option>
                         <option th:each="cupcakebottom : ${bottom_options}"
                                 th:value="${cupcakebottom.bottom_Id}"
-                                th:text="${cupcakebottom.bottom_name + ' - ' + cupcakebottom.bottom_price + ' DKK'}">
+                                th:text="${cupcakebottom.bottomname + ' - ' + cupcakebottom.bottomprice + ' DKK'}">
                         </option>
                     </select>
 
@@ -68,7 +68,7 @@
                         <option disabled selected value>vælg topping</option>
                         <option th:each="cupcaketop : ${top_options}"
                                 th:value="${cupcaketop.top_Id}"
-                                th:text="${cupcaketop.top_name + ' - ' + cupcaketop.top_Price + ' DKK'}">
+                                th:text="${cupcaketop.topname + ' - ' + cupcaketop.topPrice + ' DKK'}">
                         </option>
                     </select>
                 </div>
