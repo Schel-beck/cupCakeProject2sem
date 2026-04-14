@@ -4,13 +4,13 @@ import java.util.Objects;
 
 public class CupcakeTop {
     private int top_id;
-    private String topName;
-    private int topPrice;
+    private String top_name;
+    private int top_price;
 
-    public CupcakeTop(int top_id, String topName, int topPrice) {
+    public CupcakeTop(int top_id, String top_name, int top_price) {
         this.top_id = top_id;
-        this.topName = topName;
-        this.topPrice = topPrice;
+        this.top_name = top_name;
+        this.top_price = top_price;
     }
 
     public int getTop_id() {
@@ -18,31 +18,31 @@ public class CupcakeTop {
     }
 
     public String getTopName() {
-        return topName;
+        return top_name;
     }
 
     public int getTopPrice() {
-        return topPrice;
+        return top_price;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         CupcakeTop that = (CupcakeTop) o;
-        return top_id == that.top_id && topPrice == that.topPrice && Objects.equals(topName, that.topName);
+        return top_id == that.top_id && top_price == that.top_price && Objects.equals(top_name, that.top_name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(top_id, topName, topPrice);
+        return Objects.hash(top_id, top_name, top_price);
     }
 
     @Override
     public String toString() {
         return "CupcakeTop{" +
                 "top_id=" + top_id +
-                ", topName='" + topName + '\'' +
-                ", topPrice=" + topPrice +
+                ", topName='" + top_name + '\'' +
+                ", topPrice=" + top_price +
                 '}';
     }
 }
