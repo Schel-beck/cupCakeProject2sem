@@ -5,13 +5,8 @@ import app.controllers.CupcakeController;
 import app.controllers.Controller;
 import app.controllers.UserController;
 import app.persistence.ConnectionPool;
-import app.persistence.Database;
-import app.persistence.OrderMapper;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
-
-import static app.controllers.Controller.getAllOrders;
-
 
 public class Main {
     private static final String USER = "postgres";
@@ -23,7 +18,6 @@ public class Main {
 
     public static void main(String[] args)
     {
-
         // Initializing Javalin and Jetty webserver
         Javalin app = Javalin.create(config -> {
             config.staticFiles.add("/public");
@@ -32,10 +26,9 @@ public class Main {
         }).start(7070);
 
 
-
-
         app.get("/", ctx ->  ctx.render("index.html"));
-        app.get("/adminPageAllOrders", ctx -> Controller.getAllOrders(ctx, connectionPool));
+
+
         Controller.addRoutes(app, connectionPool);
         UserController.addRoutes(app, connectionPool);
         CupcakeController.addRoutes(app, connectionPool);
