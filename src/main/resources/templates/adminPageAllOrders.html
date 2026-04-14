@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Get All Orders</title>
+
+    <link rel="stylesheet" href="/css/Stylesheet.css">
 </head>
 <body>
 <header>
@@ -12,8 +14,6 @@
                 <img src="/img/cupcakelogo.png" class="logoSize">
             </a>
         </div>
-
-
     </div>
 
 
@@ -33,10 +33,26 @@
 </header>
 <main>
     <div class="container">
-        <form  method="post">
+        <table>
+            <tr>
+                <th>Ordre ID</th>
+                <th>Bruger ID</th>
+                <th>Ordre dato</th>
+            </tr>
+
+            <th:block th:each="order : ${orders}">
+                <tr>
+                    <td th:text="${order.orderId}"></td>
+                    <td th:text="${order.userId}"></td>
+                    <td th:text="${order.orderDate}"></td>
+                    <td>
+                        <a th:href="@{'/order/' + ${order.orderId}}" class="btn">Se detaljer</a>
+                    </td>
+                </tr>
 
 
-        </form>
+            </th:block>
+        </table>
     </div>
 </main>
 
