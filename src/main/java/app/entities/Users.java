@@ -63,6 +63,13 @@ public class Users {
     public void setIs_admin(boolean is_admin) {
         this.is_admin = is_admin;
     }
+    public int getUserId() {
+        return user_id;
+    }
+
+    public String getEmail() {
+        return user_email;
+    }
 
     @Override
     public boolean equals(Object o) {

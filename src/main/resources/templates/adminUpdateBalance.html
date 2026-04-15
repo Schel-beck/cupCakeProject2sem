@@ -1,0 +1,21 @@
+<form class="orderForm" action="/updateBalance" method="POST">
+
+    <div class="orderRow">
+
+        <select name="userId">
+            <option disabled selected value>input bruger</option>
+            <option th:each="user : ${users}"
+                    th:value="${user.user_id}"
+                    th:text="${user.user_id + ' - ' + user.email}">
+            </option>
+        </select>
+
+        <input type="number" name="amount" placeholder="Indtast amount">
+
+    </div>
+
+    <div class="orderActions">
+        <button type="submit" class="cartBtn">Opdater saldo</button>
+    </div>
+
+</form>
