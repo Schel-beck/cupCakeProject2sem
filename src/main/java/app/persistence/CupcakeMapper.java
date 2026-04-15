@@ -58,25 +58,6 @@ public class CupcakeMapper {
 
 
     }
-    public void updateBalance(int userId, int amount, ConnectionPool connectionPool) throws DatabaseException {
 
-        String sql = "UPDATE users SET balance = balance + ? WHERE user_id = ?";
-
-        try (Connection connection = connectionPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-
-            ps.setInt(1, amount);
-            ps.setInt(2, userId);
-
-            int rowsAffected = ps.executeUpdate();
-
-            if (rowsAffected == 0) {
-                throw new DatabaseException("No user found with user_id: " + userId);
-            }
-
-        } catch (SQLException e) {
-            throw new DatabaseException("Error updating user balance", e.getMessage());
-        }
-    }
 
 }
