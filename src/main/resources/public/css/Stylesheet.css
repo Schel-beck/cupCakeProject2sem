@@ -163,6 +163,7 @@ main{
 }
 /* ________________ Menu __________________  */
 
+
 .menu {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -712,4 +713,28 @@ tr:hover {
 
 .cartBtn:hover {
     background: #5c0a5c;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    position: relative; /* optional, for further positioning */
+}
+.menu {
+    position: relative; /* Make sure this is set */
+
+}
+.user-info-box {
+    position: absolute;          /* position as needed */
+    top: -72px;                    /* adjust vertical position */
+    right: -247px;               /* adjust horizontal position */
+    background-color: #5c0a5c;
+    padding: 8px 12px;
+    border-radius: 5px;
+    min-width: 200px;            /* adjust width as needed */
+    display: flex;               /* arrange items vertically */
+    flex-direction: column;      /* vertical layout */
+    align-items: flex-start;     /* align items to the start */
+    gap: 8px;                    /* space between items */
+    color: white;                /* text color */
 }
