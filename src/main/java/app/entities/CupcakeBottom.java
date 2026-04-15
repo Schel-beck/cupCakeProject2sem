@@ -13,7 +13,7 @@ public class CupcakeBottom {
         this.bottom_price = bottom_price;
     }
 
-    public int getBottom_id() {
+    public int getBottomid() {
         return bottom_id;
     }
 

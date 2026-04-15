@@ -80,6 +80,7 @@ public static void addRoutes(Javalin app, ConnectionPool connectionPool){
             System.out.println(e.getMessage());
             ctx.redirect("/");
         }
+
     }
 
 
