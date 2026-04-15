@@ -20,14 +20,15 @@ public class OrderMapper {
     String sql = "SELECT * FROM orderlines JOIN tops ON tops.top_id = orderlines.top_id \n" +
             "JOIN bottoms ON bottoms.bottom_id = orderlines.bottom_id\n" +
             "JOIN orders ON orders.order_id = orderlines.order_id " +
-            "WHERE user_id = 1";
+            "WHERE user_id = ?";
 
         try(
 
     Connection connection = connectionPool.getConnection()) {
         try(PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, user_id);
             ResultSet rs = ps.executeQuery();
-            //ps.setInt(1, user_id);
+
             while (rs.next()) {
                 int orderLineId = rs.getInt("orderline_id");
                 int orderId = rs.getInt("order_id");
