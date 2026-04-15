@@ -24,6 +24,9 @@ public class UserController {
         app.get("/aboutUs", ctx -> ctx.render("aboutUs"));
         app.get("/contactUs", ctx -> ctx.render("contactUs"));
 
+        app.get("/logout", ctx -> ctx.render("index.html"));
+        app.post("/logout", ctx -> logout(ctx, connectionPool));
+      
         app.get("/adminUpdateBalance", ctx -> showUpdateBalancePage(ctx, connectionPool));
         app.post("/updateBalance", ctx -> updateBalance(ctx, connectionPool));
     }
@@ -80,9 +83,9 @@ public class UserController {
         }
     }
 
-    public static void logout(Context ctx) {
+    public static void logout(Context ctx, ConnectionPool connectionPool) {
         ctx.req().getSession().invalidate();
-        ctx.redirect("/");
+        ctx.redirect("/index");
     }
 
 

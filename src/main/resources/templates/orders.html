@@ -22,13 +22,14 @@
 
     <div class="menu-container" style="position: relative;">
         <ul class="menu">
-            <!-- left menu -->
-            <div class="left">
+            <div class="left" th:if="${session.currentUser == null}">
                 <li><a th:href="@{/login}"> Login </a></li>
                 <li><a th:href="@{/createAccount}"> Opret bruger </a></li>
             </div>
+            <div th:if="${session.currentUser != null}">
+                <li> <a th:href="@{/logout}"> Logout</a></li>
+            </div>
 
-            <!-- right menu -->
             <div class="right">
                 <li><a th:href="@{/orders}"> Cupcakes </a></li>
                 <li><a th:href="@{/creatingPanel}"> Creating Panel </a></li>
@@ -87,7 +88,6 @@
             </div>
 
             <div class="orderActions">
-                <button type="button">+</button>
                 <button type="submit" class="cartBtn">Læg i kurv</button>
             </div>
 
