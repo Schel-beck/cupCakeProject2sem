@@ -16,6 +16,9 @@ public class CupcakeController {
 public static void addRoutes(Javalin app, ConnectionPool connectionPool){
 
     app.get("/orders", ctx -> loadOrderPage(ctx, connectionPool));
+    app.post("/orders", ctx -> {getAllBottoms(ctx, connectionPool);
+
+    getAllTops(ctx, connectionPool);});
 
 }
 

@@ -14,12 +14,21 @@
                 <img src="/img/cupcakelogo.png" class="logoSize">
             </a>
         </div>
-    </div>
 
+    </div>
 
     <ul class="menu">
         <div class="left">
-            <li><a th:href="@{/allOrders}"> alle ordre </a></li>
+
+
+            <li>
+                <a th:href="@{/adminUpdateBalance}">Update Balance</a>
+            </li>
+
+            <li>
+                <a th:href="@{/allOrders}">alle ordre</a>
+            </li>
+
         </div>
     </ul>
 
@@ -40,6 +49,7 @@
                 <th>Ordre dato</th>
             </tr>
 
+
             <th:block th:each="order : ${orders}">
                 <tr>
                     <td th:text="${order.orderId}"></td>
@@ -53,6 +63,7 @@
 
             </th:block>
         </table>
+
     </div>
 </main>
 
