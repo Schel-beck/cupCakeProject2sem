@@ -40,6 +40,6 @@ public class Main {
         UserController.addRoutes(app, connectionPool);
         CupcakeController.addRoutes(app, connectionPool);
 
-
     }
+
 }

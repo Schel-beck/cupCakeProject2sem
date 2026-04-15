@@ -8,6 +8,14 @@
 </head>
 
 <body>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get("orderId");
+
+    if (orderId) {
+        alert("Tak for din bestilling! Dit ordrenummer er: " + orderId + "\nGå ned til butikken med dit ordrenummer og få dine cupcakes!");
+    }
+</script>
 
 
 <header>
@@ -53,22 +61,22 @@
             Vælg bund og topping for at bestille din cupcake
         </div>
         <div>
-            <form class="save_cupcake" th:action="@{/orders}" method="POST">
+            <form class="save_cupcake" th:action="@{/basket}" method="POST">
 
                 <div class="boxDisplay">
-                    <select name="bottomId">
+                    <select name="bottom_Id">
                         <option disabled selected value>vælg bund</option>
                         <option th:each="cupcakebottom : ${bottom_options}"
-                                th:value="${cupcakebottom.bottom_Id}"
-                                th:text="${cupcakebottom.bottomname + ' - ' + cupcakebottom.bottomprice + ' DKK'}">
+                                th:value="${cupcakebottom.bottomId}"
+                                th:text="${cupcakebottom.bottomName + ' - ' + cupcakebottom.bottomPrice + ' DKK'}">
                         </option>
                     </select>
 
-                    <select name="topId">
+                    <select name="top_Id">
                         <option disabled selected value>vælg topping</option>
                         <option th:each="cupcaketop : ${top_options}"
-                                th:value="${cupcaketop.top_Id}"
-                                th:text="${cupcaketop.topname + ' - ' + cupcaketop.topPrice + ' DKK'}">
+                                th:value="${cupcaketop.topId}"
+                                th:text="${cupcaketop.topName + ' - ' + cupcaketop.topPrice + ' DKK'}">
                         </option>
                     </select>
                 </div>

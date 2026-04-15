@@ -635,3 +635,8 @@ tr:hover {
     border-radius: 10px;
     padding: 0 40% 2rem;
 }
+
+tfoot td {
+    font-weight: bold;
+    background-color: #fafafa;
+}

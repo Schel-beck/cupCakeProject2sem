@@ -31,7 +31,7 @@ class OrderMapperTest {
     public static void setUpClass() {
         try {
             db = new Database(USER, PASSWORD, URL);
-            orderMapper = new OrderMapper(db);
+            orderMapper = new OrderMapper();
             try (Connection testConnection = db.connect())
             {
                 try (Statement stmt = testConnection.createStatement())

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kurv</title>
+
+    <link rel="stylesheet" href="/css/Stylesheet.css">
+</head>
+<body>
+<header>
+    <div class="header">
+        <div class="logoplace">
+            <a th:href="@{/index}">
+                <img src="/img/cupcakelogo.png" class="logoSize">
+            </a>
+        </div>
+
+    </div>
+
+    <ul class="menu">
+
+        <div class="left">
+            <li><a th:href="@{/orders}"> Cupcakes </a></li>
+            <li><a th:href="@{/creatingPanel}"> Creating Panel </a></li>
+        </div>
+    </ul>
+
+
+    <main>
+
+        <div class="container">
+            <h2>Kurv</h2>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Bund</th>
+                    <th>Top</th>
+                    <th>Antal</th>
+                    <th>Pris</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="line : ${cart}">
+                    <td th:text="${line.cupcakeBottom.bottomName}"></td>
+                    <td th:text="${line.cupcakeTop.topName}"></td>
+                    <td th:text="${line.quantity}"></td>
+                    <td th:text="${line.price}"></td>
+                </tr>
+                </tbody>
+
+                <tfoot>
+                <tr>
+                    <td colspan="3"><strong>Total:</strong></td>
+                    <td th:text="${total}"></td>
+                </tr>
+                </tfoot>
+
+            </table>
+
+            <form action="/checkout" method="post">
+                <button type="submit">Bestil</button>
+            </form>
+
+        </div>
+
+
+    </main>
+
+
+</header>
+
+</body>
+</html>

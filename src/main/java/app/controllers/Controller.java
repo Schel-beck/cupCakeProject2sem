@@ -1,5 +1,7 @@
 package app.controllers;
 
+import app.entities.CupcakeBottom;
+import app.entities.CupcakeTop;
 import app.entities.Orders;
 import app.persistence.ConnectionPool;
 import app.persistence.OrderMapper;
@@ -21,9 +23,9 @@ public class Controller {
 
         ctx.attribute("orders", ordersList);
 
-
         ctx.render("adminPageAllOrders");
 
 
     }
+
 }
