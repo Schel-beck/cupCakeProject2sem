@@ -28,18 +28,9 @@
         </div>
 
 
-        <div class="right">
+        <div class="right" th:if="${session.currentUser != null}">
             <li><a th:href="@{/orders}"> Cupcakes </a></li>
             <li><a th:href="@{/creatingPanel}"> Creating Panel </a></li>
-            <div class="user-info-box">
-                <div th:if="${session.currentUser != null}">
-                    Email: <span th:text="${session.currentUser.getUserEmail}"></span>
-                </div>
-                <div th:if="${session.currentUser != null}">
-                    Saldo: <span th:text="${session.currentUser.balance}"></span> Kr
-                </div>
-            </div>
-
         </div>
     </ul>
 
