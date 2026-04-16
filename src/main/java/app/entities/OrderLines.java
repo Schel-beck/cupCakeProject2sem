@@ -31,6 +31,13 @@ public class OrderLines {
         this.price = price;
     }
 
+    public OrderLines(CupcakeBottom cupcakeBottom, CupcakeTop cupcakeTop, int quantity) {
+        this.cupcakeTop = cupcakeTop;
+        this.cupcakeBottom = cupcakeBottom;
+        this.quantity = quantity;
+        this.price = cupcakeBottom.getBottomPrice() + cupcakeTop.getTopPrice() * quantity;
+    }
+
     @Override
     public String toString() {
         return "OrderLines{" +
@@ -41,6 +48,30 @@ public class OrderLines {
                 ", quantity=" + quantity +
                 ", price=" + price +
                 '}';
+    }
+
+    public int getOrderLineId() {
+        return orderLineId;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public CupcakeTop getCupcakeTop() {
+        return cupcakeTop;
+    }
+
+    public CupcakeBottom getCupcakeBottom() {
+        return cupcakeBottom;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public int getPrice() {
+        return price;
     }
 }
 

@@ -637,6 +637,10 @@ tr:hover {
     padding: 0 40% 2rem;
 }
 
+tfoot td {
+    font-weight: bold;
+    background-color: #fafafa;
+}
 /*--OrderContainer --*/
 /* container */
 .orderContainer {

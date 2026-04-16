@@ -8,6 +8,14 @@
 </head>
 
 <body>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get("orderId");
+
+    if (orderId) {
+        alert("Tak for din bestilling! Dit ordrenummer er: " + orderId + "\nGå ned til butikken med dit ordrenummer og få dine cupcakes!");
+    }
+</script>
 
 
 <header>

@@ -2,16 +2,13 @@ package app.persistence;
 
 import app.entities.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderMapper {
 
-    public OrderMapper(Database db) {
+    public OrderMapper() {
     }
 
 
@@ -79,8 +76,43 @@ public static List<Orders> getAllOrders(ConnectionPool connectionPool){
         throw new RuntimeException(e);
     }
 
-
     return allOrders;
 }
+
+    public int createOrder(ConnectionPool connectionPool) {
+        String sql = "INSERT INTO orders DEFAULT VALUES";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    public void addOrderLine(int orderId, OrderLines line, ConnectionPool connectionPool) {
+        String sql = "INSERT INTO orderlines (order_id, bottom_id, top_id, quantity, price) VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection con = connectionPool.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, orderId);
+            ps.setInt(2, line.getCupcakeBottom().getBottomId());
+            ps.setInt(3, line.getCupcakeTop().getTopId());
+            ps.setInt(4, line.getQuantity());
+            ps.setInt(5, line.getPrice());
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

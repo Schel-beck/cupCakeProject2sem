@@ -3,46 +3,49 @@ package app.entities;
 import java.util.Objects;
 
 public class CupcakeTop {
-    private int top_id;
-    private String top_name;
-    private int top_price;
 
-    public CupcakeTop(int top_id, String top_name, int top_price) {
-        this.top_id = top_id;
-        this.top_name = top_name;
-        this.top_price = top_price;
+    private int topId;
+    private String topName;
+    private int topPrice;
+
+    public CupcakeTop(int topId, String topName, int topPrice) {
+        this.topId = topId;
+        this.topName = topName;
+        this.topPrice = topPrice;
     }
 
-    public int getTopid() {
-        return top_id;
+    public int getTopId() {
+        return topId;
     }
 
     public String getTopName() {
-        return top_name;
+        return topName;
     }
 
     public int getTopPrice() {
-        return top_price;
+        return topPrice;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         CupcakeTop that = (CupcakeTop) o;
-        return top_id == that.top_id && top_price == that.top_price && Objects.equals(top_name, that.top_name);
+        return topId == that.topId &&
+                topPrice == that.topPrice &&
+                Objects.equals(topName, that.topName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(top_id, top_name, top_price);
+        return Objects.hash(topId, topName, topPrice);
     }
 
     @Override
     public String toString() {
         return "CupcakeTop{" +
-                "top_id=" + top_id +
-                ", topName='" + top_name + '\'' +
-                ", topPrice=" + top_price +
+                "topId=" + topId +
+                ", topName='" + topName + '\'' +
+                ", topPrice=" + topPrice +
                 '}';
     }
 }
