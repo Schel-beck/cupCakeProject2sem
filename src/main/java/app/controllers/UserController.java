@@ -85,6 +85,7 @@ public class UserController {
 
     public static void logout(Context ctx, ConnectionPool connectionPool) {
         ctx.req().getSession().invalidate();
+        ctx.sessionAttribute("currentUser", null);
         ctx.redirect("/index");
     }
 
