@@ -28,19 +28,36 @@
 
     </div>
 
+    <div class="menu-container" style="position: relative;">
+        <ul class="menu">
+            <div class="left" th:if="${session.currentUser == null}">
+                <li><a th:href="@{/login}"> Login </a></li>
+                <li><a th:href="@{/createAccount}"> Opret bruger </a></li>
+            </div>
+            <div th:if="${session.currentUser != null}">
+                <li> <a th:href="@{/logout}"> Logout</a></li>
+            </div>
 
-    <ul class="menu">
-        <div class="left">
-            <li><a th:href="@{/login}"> Login </a></li>
-            <li><a th:href="@{/createAccount}"> Opret bruger </a></li>
-        </div>
+            <div class="right">
+                <li><a th:href="@{/orders}"> Cupcakes </a></li>
+                <li><a th:href="@{/creatingPanel}"> Creating Panel </a></li>
+
+                <div class="user-info-box">
+                    <div th:if="${session.currentUser != null}">
+                        Email: <span th:text="${session.currentUser.getUserEmail}"></span>
+                    </div>
+                    <div th:if="${session.currentUser != null}">
+                        Saldo: <span th:text="${session.currentUser.balance}"></span> Kr
+                    </div>
+                </div>
+
+            </div>
 
 
-        <div class="right">
-            <li><a th:href="@{/orders}"> Cupcakes </a></li>
-            <li><a th:href="@{/creatingPanel}"> Creating Panel </a></li>
-        </div>
-    </ul>
+        </ul>
+
+
+    </div>
 
 
     <nav class="navCenter">
@@ -51,43 +68,40 @@
 
 </header>
 <main>
-    <nav class="navCentrum">
+    <nav class="orderContainer">
 
-        <h1>
-            Bestil cupcakes her
-        </h1>
+        <h1>Velkommen ombord</h1>
+        <p>Øens bedste cupcakes. vælg og bestil her:</p>
 
-        <div class="bodyTextCenter">
-            Vælg bund og topping for at bestille din cupcake
-        </div>
-        <div>
-            <form class="save_cupcake" th:action="@{/basket}" method="POST">
+        <form class="orderForm" th:action="@{/orders}" method="POST">
 
-                <div class="boxDisplay">
-                    <select name="bottom_Id">
-                        <option disabled selected value>vælg bund</option>
-                        <option th:each="cupcakebottom : ${bottom_options}"
-                                th:value="${cupcakebottom.bottomId}"
-                                th:text="${cupcakebottom.bottomName + ' - ' + cupcakebottom.bottomPrice + ' DKK'}">
-                        </option>
-                    </select>
+            <div class="orderRow">
+                <select name="bottomId">
+                    <option disabled selected value>vælg bund</option>
+                    <option th:each="cupcakebottom : ${bottom_options}"
+                            th:value="${cupcakebottom.bottomId}"
+                            th:text="${cupcakebottom.bottomname + ' - ' + cupcakebottom.bottomprice + ' DKK'}">
+                    </option>
+                </select>
 
-                    <select name="top_Id">
-                        <option disabled selected value>vælg topping</option>
-                        <option th:each="cupcaketop : ${top_options}"
-                                th:value="${cupcaketop.topId}"
-                                th:text="${cupcaketop.topName + ' - ' + cupcaketop.topPrice + ' DKK'}">
-                        </option>
-                    </select>
-                </div>
+                <select name="topId">
+                    <option disabled selected value>vælg topping</option>
+                    <option th:each="cupcaketop : ${top_options}"
+                            th:value="${cupcaketop.topId}"
+                            th:text="${cupcaketop.topname + ' - ' + cupcaketop.topPrice + ' DKK'}">
+                    </option>
+                </select>
 
-                <div class="actions">
-                    <button type="button" class=" ">+</button>
-                    <button type="submit" class=" ">Læg i kurv</button>
-                </div>
+                <input type="number" name="amount" placeholder="vælg antal">
+            </div>
 
-            </form>
-        </div>
+            <div class="orderActions">
+                <button type="submit" class="cartBtn">Læg i kurv</button>
+            </div>
+
+        </form>
+
+
     </nav>
 </main>
 

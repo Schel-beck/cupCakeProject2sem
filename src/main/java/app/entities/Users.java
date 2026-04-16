@@ -28,7 +28,7 @@ public class Users {
         this.name = name;
     }
 
-    public String getUser_email() {
+    public String getUseremail() {
         return user_email;
     }
 
@@ -52,8 +52,8 @@ public class Users {
         this.user_id = user_id;
     }
 
-    public void getbalance() {
-        this.balance = balance;
+    public int getbalance() {
+        return balance;
     }
 
     public boolean isAdmin() {
@@ -62,6 +62,13 @@ public class Users {
 
     public void setIs_admin(boolean is_admin) {
         this.is_admin = is_admin;
+    }
+    public int getUserId() {
+        return user_id;
+    }
+
+    public String getEmail() {
+        return user_email;
     }
 
     @Override

@@ -6,7 +6,9 @@ import app.persistence.ConnectionPool;
 import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+import org.eclipse.jetty.server.Authentication;
 
+import java.util.List;
 
 
 public class UserController {
@@ -21,6 +23,12 @@ public class UserController {
 
         app.get("/aboutUs", ctx -> ctx.render("aboutUs"));
         app.get("/contactUs", ctx -> ctx.render("contactUs"));
+
+        app.get("/logout", ctx -> ctx.render("index.html"));
+        app.post("/logout", ctx -> logout(ctx, connectionPool));
+      
+        app.get("/adminUpdateBalance", ctx -> showUpdateBalancePage(ctx, connectionPool));
+        app.post("/updateBalance", ctx -> updateBalance(ctx, connectionPool));
     }
 
 
@@ -64,6 +72,8 @@ public class UserController {
             if (user.isAdmin()) {
                 ctx.redirect("/adminPageAllOrders");
             } else {
+                user = ctx.sessionAttribute("currentUser");
+                ctx.attribute("user", user);
                 ctx.redirect("/orders");
             }
 
@@ -73,9 +83,9 @@ public class UserController {
         }
     }
 
-    public static void logout(Context ctx) {
+    public static void logout(Context ctx, ConnectionPool connectionPool) {
         ctx.req().getSession().invalidate();
-        ctx.redirect("/");
+        ctx.redirect("/index");
     }
 
 
@@ -103,6 +113,23 @@ public class UserController {
         }
 
         else return "";
+    }
+    public static void showUpdateBalancePage(Context ctx, ConnectionPool connectionPool) throws DatabaseException {
+
+        List<Users> users = UserMapper.getAllUsers(connectionPool);
+
+        ctx.attribute("users", users);
+
+        ctx.render("adminUpdateBalance.html");
+    }
+    public static void updateBalance(Context ctx, ConnectionPool connectionPool) throws DatabaseException {
+
+        int userId = Integer.parseInt(ctx.formParam("userId"));
+        int amount = Integer.parseInt(ctx.formParam("amount"));
+
+        UserMapper.updateBalance(userId, amount, connectionPool);
+
+        ctx.redirect("/adminUpdateBalance");
     }
 
 

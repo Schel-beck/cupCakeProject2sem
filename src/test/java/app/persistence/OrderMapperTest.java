@@ -22,14 +22,16 @@ class OrderMapperTest {
     private final static String USER = "postgres";
     private final static String PASSWORD = "postgres";
     private final static String URL = "jdbc:postgresql://localhost:5432/cupcake_shop?currentSchema=test";
+    private static final String DB = "cupcake_shop";
 
     private static Database db;
     private static OrderMapper orderMapper;
-    private static ConnectionPool connectionPool;
+    private static ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);;
 
     @BeforeAll
     public static void setUpClass() {
         try {
+
             db = new Database(USER, PASSWORD, URL);
             orderMapper = new OrderMapper();
             try (Connection testConnection = db.connect())
@@ -110,14 +112,14 @@ class OrderMapperTest {
 
 
 
-                stmt.execute("INSERT INTO test.bottoms (bottom_id, bottomName, bottomPrice) VALUES " +
+                stmt.execute("INSERT INTO test.bottoms (bottom_id, bottom_name, bottom_price) VALUES " +
                         "(1, 'Chocolate', 5), " +
                         "(2, 'Vanilla', 4), " +
                         "(3, 'Almond', 6), " +
                         "(4, 'Red Velvet', 6)");
 
 
-                stmt.execute("INSERT INTO test.tops (top_id, topName, topPrice) VALUES " +
+                stmt.execute("INSERT INTO test.tops (top_id, top_name, top_price) VALUES " +
                         "(1, 'Chocolate Frosting', 5), " +
                         "(2, 'Vanilla Cream', 4), " +
                         "(3, 'Strawberry Swirl', 6), " +
@@ -155,7 +157,7 @@ class OrderMapperTest {
     }
     @Test
     void getAllOrderlines() {
-        List<OrderLines> allOrderLines = orderMapper.getAllOrderlines(1);
+        List<OrderLines> allOrderLines = orderMapper.getAllOrderlines(1, connectionPool);
 
         assertEquals(2, allOrderLines.size());
         CupcakeTop oneTop = new CupcakeTop(1, "Chocolate Frosting", 5);

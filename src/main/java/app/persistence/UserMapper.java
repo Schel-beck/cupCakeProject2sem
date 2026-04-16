@@ -1,5 +1,7 @@
 package app.persistence;
 
+import app.entities.CupcakeBottom;
+import app.entities.CupcakeTop;
 import app.entities.Users;
 import app.exception.DatabaseException;
 
@@ -7,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class UserMapper {
@@ -66,5 +70,53 @@ public class UserMapper {
             throw new DatabaseException("Kunne ikke oprette bruger", e.getMessage());
         }
     }
+    public static void updateBalance(int userId, int amount, ConnectionPool connectionPool) throws DatabaseException {
+
+        String sql = "UPDATE users SET balance = balance + ? WHERE user_id = ?";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, amount);
+            ps.setInt(2, userId);
+
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected == 0) {
+                throw new DatabaseException("No user found with user_id: " + userId);
+            }
+
+        } catch (SQLException e) {
+            throw new DatabaseException("Error updating user balance", e.getMessage());
+        }
+    }
+
+    public static List<Users> getAllUsers(ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT * FROM users";
+        List<Users> getAllUsers = new ArrayList<>();
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                int user_id = rs.getInt("user_id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                boolean is_admin = rs.getBoolean("is_admin");
+                int balance = rs.getInt("balance");
+                getAllUsers.add(new Users(name, email,password, user_id, balance, is_admin));
+
+            }
+
+        }catch(SQLException e){
+            throw new DatabaseException("Something went wrong fetching users in Database", e.getMessage());
+        }
+        return getAllUsers;
+
+
+    }
+
 }
+
+
 
