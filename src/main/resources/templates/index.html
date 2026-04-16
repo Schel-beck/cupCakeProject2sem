@@ -27,12 +27,11 @@
             <li><a th:href="@{/createAccount}"> Opret bruger </a></li>
         </div>
 
-
-        <div class="right">
+        <div class="right" th:if="${session.currentUser != null}">
             <li><a th:href="@{/orders}"> Cupcakes </a></li>
             <li><a th:href="@{/creatingPanel}"> Creating Panel </a></li>
-
         </div>
+
     </ul>
 
 
