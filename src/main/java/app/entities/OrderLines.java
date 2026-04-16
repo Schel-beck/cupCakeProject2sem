@@ -35,7 +35,7 @@ public class OrderLines {
         this.cupcakeTop = cupcakeTop;
         this.cupcakeBottom = cupcakeBottom;
         this.quantity = quantity;
-        this.price = cupcakeBottom.getBottomPrice() + cupcakeTop.getTopPrice() * quantity;
+        this.price = (cupcakeBottom.getBottomPrice() + cupcakeTop.getTopPrice()) * quantity;
     }
 
     @Override
@@ -71,7 +71,8 @@ public class OrderLines {
     }
 
     public int getPrice() {
-        return price;
+        return (cupcakeBottom.getBottomPrice() + cupcakeTop.getTopPrice()) * quantity;
     }
+
 }
 

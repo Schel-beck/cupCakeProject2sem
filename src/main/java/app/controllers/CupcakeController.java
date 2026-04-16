@@ -19,10 +19,11 @@ public class CupcakeController {
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
 
         app.get("/orders", ctx -> loadOrderPage(ctx, connectionPool));
-        app.post("/orders", ctx -> {
+        app.post("/orders", ctx -> addToBasket(ctx, connectionPool));
+        /*app.post("/orders", ctx -> {
             getAllBottoms(ctx, connectionPool);
             getAllTops(ctx, connectionPool);
-        });
+        });*/
 
         app.post("/basket", ctx -> addToBasket(ctx, connectionPool));
         app.get("/basket", ctx -> showBasket(ctx, connectionPool));
@@ -60,7 +61,7 @@ public class CupcakeController {
             allTops = cupcakeMapper.getAllCupcakeTops(connectionPool);
             ctx.sessionAttribute("top_options", allTops);
             ctx.sessionAttribute("top_options", allTops);
-            ctx.render("order-page.html");
+            ctx.render("orders.html");
 
         } catch (DatabaseException e) {
             System.out.println(e.getMessage());
@@ -113,23 +114,26 @@ public class CupcakeController {
 
         CupcakeMapper cupcakeMapper = new CupcakeMapper();
 
-        int bottomId = Integer.parseInt(ctx.formParam("bottom_Id"));
-        int topId = Integer.parseInt(ctx.formParam("top_Id"));
+        int bottomId = Integer.parseInt(ctx.formParam("bottomId"));
+        int topId = Integer.parseInt(ctx.formParam("topId"));
+        int amount = Integer.parseInt(ctx.formParam("amount"));
 
         CupcakeBottom cupcakeBottom = cupcakeMapper.getBottomCupcakeById(bottomId, connectionPool);
         CupcakeTop cupcakeTop = cupcakeMapper.getTopCupcakeById(topId, connectionPool);
-        List<OrderLines> cart = ctx.sessionAttribute("cart");
 
+        List<OrderLines> cart = ctx.sessionAttribute("cart");
         if (cart == null) {
             cart = new ArrayList<>();
         }
 
-        OrderLines orderLine = new OrderLines(cupcakeBottom, cupcakeTop, 1);
+        OrderLines orderLine = new OrderLines(cupcakeBottom, cupcakeTop, amount);
 
         cart.add(orderLine);
         ctx.sessionAttribute("cart", cart);
+
         ctx.redirect("/basket");
     }
+
 
     public static void checkout(Context ctx, ConnectionPool connectionPool) {
 
